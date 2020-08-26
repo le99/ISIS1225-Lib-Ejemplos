@@ -20,8 +20,8 @@
  """
  
 import config
-from Lib.DataStructures import listnode as node 
-from Lib.Utils import error as error
+from DISClib.DataStructures import listnode as node 
+from DISClib.Utils import error as error
 
 """
   Este módulo implementa una estructura de datos lineal mediante una lista encadenada sencillamente 

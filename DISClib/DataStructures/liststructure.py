@@ -19,14 +19,12 @@
  """
 
 import config
-from Lib.Utils import error as error
-from Lib.DataStructures import liststructure as lt
-
+from DISClib.Utils import error as error
+from DISClib.DataStructures import arraylist as alt
+from DISClib.DataStructures import singlelinkedlist as slt 
 
 """
-  Este módulo implementa el tipo abstracto de datos (TAD) lista. 
-  Se puede implementar sobre una estructura de datos encadenada de forma sencilla o doble o 
-  como un arreglo
+  Este módulo selecciona la estructura de datos deseada para ejectuar una operación del TAD Lista.
 """
 
 def newList (datastructure='SINGLE_LINKED', cmpfunction=None):
@@ -40,11 +38,14 @@ def newList (datastructure='SINGLE_LINKED', cmpfunction=None):
         Exception
     """
     try:
-        lst = lt.newList(datastructure, cmpfunction)
-        return lst
+        if (datastructure == "ARRAY_LIST"):
+            lt = alt.newList(cmpfunction)
+        else:
+            lt = slt.newList(cmpfunction)
+        return lt
     except Exception as exp:
-        error.reraise (exp, 'TADList->newList: ')
-    
+        error.reraise (exp, 'list->newList: ')
+
 
 
 def addFirst(lst, element):
@@ -64,9 +65,13 @@ def addFirst(lst, element):
         Exception
     """
     try:
-        lt.addFirst (lst, element)
+        if (lst['type']=='ARRAY_LIST'):
+            alt.addFirst (lst, element)
+        else:
+            slt.addFirst (lst, element)
     except Exception as exp:
-        error.reraise (exp, 'TADList->addFirst: ')
+        error.reraise (exp, 'List->addFirst: ')
+
 
 
 
@@ -84,9 +89,13 @@ def addLast(lst, element):
         Exception
     """
     try:
-        lt.addLast (lst, element)
+        if (lst['type']=='ARRAY_LIST'):
+            alt.addLast (lst, element)
+        else:
+            slt.addLast (lst, element)
     except Exception as exp:
-        error.reraise (exp, 'TADList->addLast: ')
+        error.reraise (exp, 'List->addLast: ')
+
 
 
 
@@ -100,9 +109,15 @@ def isEmpty (lst):
         Exception
     """
     try:
-        return lt.isEmpty(lst)
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.isEmpty(lst)
+        else:
+            return slt.isEmpty(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->isEmpty: ')
+        error.reraise (exp, 'List->isEmpty: ')
+
+
+
 
 
 def size(lst):
@@ -114,10 +129,14 @@ def size(lst):
     Raises: 
         Exception
     """
-    try: 
-        return lt.size(lst)
+    try:
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.size(lst)
+        else:
+            return slt.size(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->size: ')
+        error.reraise (exp, 'List->size: ')
+
 
 
 
@@ -131,9 +150,12 @@ def firstElement (lst):
         Exception
     """
     try:
-        return lt.firstElement (lst)
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.firstElement (lst)
+        else:
+            return slt.firstElement (lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->firstElement: ')
+        error.reraise (exp, 'List->firstElement: ')
 
 
 
@@ -146,10 +168,13 @@ def lastElement (lst):
     Raises:
         Exception
     """
-    try: 
-        return lt.lastElement(lst)
+    try:
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.lastElement(lst)
+        else:
+            return slt.lastElement(lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->LastElement: ')
+        error.reraise (exp, 'List->lastElement: ')
 
 
 
@@ -167,8 +192,11 @@ def getElement (lst, pos):
     Raises:
         Exception
     """
-    try: 
-        return lt.getElement (lst, pos) 
+    try:
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.getElement (lst, pos) 
+        else:
+            return slt.getElement (lst, pos) 
     except Exception as exp:
         error.reraise (exp, 'List->getElement: ')
 
@@ -189,9 +217,12 @@ def deleteElement (lst, pos):
         Exception
     """
     try:
-        lt.deleteElement(lst, pos) 
+        if (lst['type']=='ARRAY_LIST'):
+            alt.deleteElement(lst, pos) 
+        else:
+            slt.deleteElement(lst, pos) 
     except Exception as exp:
-        error.reraise (exp, 'TADList->deleteElement: ')
+        error.reraise (exp, 'List->deleteElement: ')
 
 
 
@@ -205,15 +236,16 @@ def removeFirst (lst):
     Args:
         lst: La lista a examinar
 
-    Returns:
-        El primer elemento de la lista
     Raises:
         Exception
     """
     try:
-        return lt.removeFirst (lst)
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.removeFirst (lst)
+        else:
+            return slt.removeFirst (lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->removeFirst: ')
+        error.reraise (exp, 'List->removeFirst: ')
 
 
 
@@ -227,15 +259,16 @@ def removeLast (lst):
     Args:
         lst: La lista a examinar
 
-    Returns:
-        El ultimo elemento de la lista
     Raises:
         Exception
     """
     try:
-        return lt.removeLast (lst)
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.removeLast (lst)
+        else:
+            return slt.removeLast (lst)
     except Exception as exp:
-        error.reraise (exp, 'TADList->removeLast: ')
+        error.reraise (exp, 'List->removeLast: ')
 
 
 
@@ -254,10 +287,12 @@ def insertElement (lst, element, pos):
         Exception
     """
     try:
-        lt.insertElement (lst, element, pos)
+        if (lst['type']=='ARRAY_LIST'):
+            alt.insertElement (lst, element, pos)
+        else:
+            slt.insertElement (lst, element, pos)
     except Exception as exp:
-        error.reraise (exp, 'TADList->insertElement: ')
-    
+        error.reraise (exp, 'List->insertElement: ')
 
 
 
@@ -272,15 +307,17 @@ def isPresent (lst, element):
     Args:
         lst: La lista a examinar
         element: El elemento a buscar
-    Returns:     
-        
+
     Raises:
         Exception
     """
     try:
-        return lt.isPresent (lst, element)
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.isPresent (lst, element)
+        else:
+            return slt.isPresent (lst, element)
     except Exception as exp:
-        error.reraise (exp, 'TADList->isPresent: ')
+        error.reraise (exp, 'List->isPresent: ')
 
 
 
@@ -297,7 +334,10 @@ def exchange (lst, pos1, pos2):
         Exception
     """
     try:
-        lt.exchange (lst, pos1, pos2)
+        if (lst['type']=='ARRAY_LIST'):
+            alt.exchange (lst, pos1, pos2)
+        else:
+            slt.exchange (lst, pos1, pos2)
     except Exception as exp:
         error.reraise (exp, 'List->exchange: ')
 
@@ -315,8 +355,11 @@ def changeInfo (lst, pos, element):
     Raises:
         Exception
     """
-    try: 
-        lt.changeInfo (lst, pos, element)
+    try:
+        if (lst['type']=='ARRAY_LIST'):
+            alt.changeInfo (lst, pos, element)
+        else:
+            slt.changeInfo (lst, pos, element)
     except Exception as exp:
         error.reraise (exp, 'List->changeInfo: ')
 
@@ -338,8 +381,12 @@ def subList (lst, pos, numelem):
         Exception
     """
     try:
-        return lt.subList (lst, pos, numelem)
+        if (lst['type']=='ARRAY_LIST'):
+            return alt.subList (lst, pos, numelem)
+        else:
+            return slt.subList (lst, pos, numelem)
     except Exception as exp:
         error.reraise (exp, 'List->subList: ')
+
 
 

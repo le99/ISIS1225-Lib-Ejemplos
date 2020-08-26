@@ -22,7 +22,7 @@
 
 
 import config as cf
-from Lib.ADT import list as lt
+from DISClib.ADT import list as lt
 
 """
 Implementación del algoritmo shellsort, basado en la propuesta de Robert Sedgewick

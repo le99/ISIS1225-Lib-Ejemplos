@@ -21,8 +21,8 @@
 
 import pytest
 import config 
-from Lib.DataStructures import listiterator as it
-from Lib.ADT  import stack as st
+from DISClib.DataStructures import listiterator as it
+from DISClib.ADT import stack as st
 
 list_type = 'ARRAY_LIST'
 

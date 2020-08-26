@@ -21,7 +21,7 @@
 
 
 import config as cf
-from Lib.ADT import list as lt
+from DISClib.ADT import list as lt
 
 def insertionSort (lst, lessfunction): 
     size =  lt.size(lst) 

@@ -23,7 +23,7 @@
   los nodos de la lista.
 """
 import config
-from Lib.Utils import error as error
+from DISClib.Utils import error as error
 
 def newList (cmpfunction=None):
     """Crea una lista vacia.

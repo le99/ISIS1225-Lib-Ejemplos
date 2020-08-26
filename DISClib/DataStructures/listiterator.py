@@ -20,8 +20,8 @@
  """
 
 
-from Lib.DataStructures import arraylistiterator as ait
-from Lib.DataStructures import linkedlistiterator as lit
+from DISClib.DataStructures import arraylistiterator as ait
+from DISClib.DataStructures import linkedlistiterator as lit
 
 
 """

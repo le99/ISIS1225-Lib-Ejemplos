@@ -20,8 +20,8 @@
  """
 
 import config
-from Lib.Utils import error as error
-from Lib.ADT import list as lt
+from DISClib.Utils import error as error
+from DISClib.ADT import list as lt
 
 """
   Este módulo implementa el tipo abstracto de datos pila (Stack) sobre una lista encadenada.

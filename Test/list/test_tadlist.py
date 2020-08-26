@@ -24,7 +24,7 @@ import pytest
 import config 
 
 
-from Lib.ADT import list as lt
+from DISClib.ADT import list as lt
 
 
 

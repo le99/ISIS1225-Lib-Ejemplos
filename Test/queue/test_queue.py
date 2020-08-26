@@ -21,8 +21,8 @@
 
 import pytest
 import config 
-from Lib.DataStructures import listiterator as it
-from Lib.ADT import queue as q
+from DISClib.DataStructures import listiterator as it
+from DISClib.ADT import queue as q
 
 list_type = 'ARRAY_LIST'
 
