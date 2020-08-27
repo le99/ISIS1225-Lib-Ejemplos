@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computación,
+ * Universidad de Los Andes
+ *
  *
  * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
@@ -22,13 +23,16 @@
 
 import config as cf
 from DISClib.ADT import list as lt
+assert cf
 
-def insertionSort (lst, lessfunction): 
-    size =  lt.size(lst) 
+
+def insertionSort(lst, lessfunction):
+    size = lt.size(lst)
     pos1 = 1
     while pos1 <= size:
         pos2 = pos1
-        while (pos2 >1) and (lessfunction (lt.getElement(lst, pos2),lt.getElement(lst, pos2-1))):
-            lt.exchange (lst, pos2, pos2-1)
+        while (pos2 > 1) and (lessfunction(
+              (lt.getElement(lst, pos2), lt.getElement(lst, pos2-1)))):
+            lt.exchange(lst, pos2, pos2-1)
             pos2 -= 1
         pos1 += 1

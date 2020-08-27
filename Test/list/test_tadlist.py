@@ -1,5 +1,6 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
+ * Copyright 2020, Departamento de sistemas y Computación,
+ * Universidad de Los Andes
  * 
  *
  * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
@@ -19,16 +20,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
-import pytest 
-import config 
-
-
+import pytest
+import config
 from DISClib.ADT import list as lt
+assert config
 
 
-
-def cmpfunction (element1, element2):
+def cmpfunction(element1, element2):
     if element1['book_id'] == element2['book_id']:
         return 0
     elif element1['book_id'] < element2['book_id']:
@@ -38,13 +36,14 @@ def cmpfunction (element1, element2):
 
 
 @pytest.fixture
-def slt ():
+def slt():
     # lst = lt.newList('SINGLE_LINKED', cmpfunction)
     lst = lt.newList('ARRAY_LIST', cmpfunction)
     return lst
 
+
 @pytest.fixture
-def alt ():
+def alt():
     lst = lt.newList('ARRAY_LIST', cmpfunction)
     return lst
 
