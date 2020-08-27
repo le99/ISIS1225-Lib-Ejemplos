@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computación
+ * Universidad de Los Andes
+ *
  *
  * Desarrollado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
@@ -25,7 +26,8 @@ from DISClib.DataStructures import linkedlistiterator as lit
 
 
 """
-  Este módulo implementa un iterador para recorrer los elementos de una lista encadenada
+  Este módulo implementa un iterador para recorrer los elementos
+  de una lista encadenada
 """
 
 
@@ -40,24 +42,23 @@ def newIterator(lst):
     if (lst['type'] == 'ARRAY_LIST'):
         return ait.newIterator(lst)
     else:
-        return lit.newIterator (lst)
-
+        return lit.newIterator(lst)
 
 
 def hasNext(iterator):
     """
     Informa si se puede seguir iterando.
-    Informa si existe un nodo en la siguiente posicion de la lista, a partir de la posicion actual del iterador.
+    Informa si existe un nodo en la siguiente posicion de la lista,
+    a partir de la posicion actual del iterador.
     Args:
         iterator: El iterador creado sobre la lista
     Returns:
         True si existe un siguiente elemento, False de lo contrario
     """
-    if (iterator['type']=='ARRAY_ITERATOR'):
+    if (iterator['type'] == 'ARRAY_ITERATOR'):
         return ait.hasNext(iterator)
-    else: 
+    else:
         return lit.hasNext(iterator)
-
 
 
 def next(iterator):
@@ -68,7 +69,7 @@ def next(iterator):
     Returns:
         El siguiente elemento al último retornado por el iterador
     """
-    if (iterator['type']=='ARRAY_ITERATOR'):
+    if (iterator['type'] == 'ARRAY_ITERATOR'):
         return ait.next(iterator)
     else:
         return lit.next(iterator)

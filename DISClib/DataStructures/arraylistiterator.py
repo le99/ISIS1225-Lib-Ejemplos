@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computación
+ * Universidad de Los Andes
+ *
  *
  * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
@@ -20,9 +21,8 @@
  """
 
 
-
 """
-  Este módulo implementa un iterador para recorrer los elementos de una lista 
+  Este módulo implementa un iterador para recorrer los elementos de una lista
 """
 
 
@@ -34,15 +34,17 @@ def newIterator(lst):
     Returns:
         Un iterador para la lista
     """
-    iterator = {'iterable_lst':lst,'current_node':-1, 'type':'ARRAY_ITERATOR'}
+    iterator = {'iterable_lst': lst,
+                'current_node': -1,
+                'type': 'ARRAY_ITERATOR'}
     return iterator
-
 
 
 def hasNext(iterator):
     """
     Informa si se puede seguir iterando.
-    Informa si existe un nodo en la siguiente posicion de la lista, a partir de la posicion actual del iterador.
+    Informa si existe un nodo en la siguiente posicion de la lista,
+    a partir de la posicion actual del iterador.
     Args:
         iterator: El iterador creado sobre la lista
     Returns:

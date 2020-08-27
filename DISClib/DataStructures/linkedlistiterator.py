@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computacións
+ * Universidad de Los Andes
+ *
  * Desarrollado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
  *
@@ -18,12 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
-
-import DISClib.DataStructures.listnode as node 
-
-
 """
-  Este módulo implementa un iterador para recorrer los elementos de una lista encadenada
+  Este módulo implementa un iterador para recorrer los elementos
+  de una lista encadenada
 """
 
 
@@ -35,28 +33,35 @@ def newIterator(lst):
     Returns:
         Un iterador para la lista
     """
-    iterator = {'iterable_lst':lst,'current_node':None, 'type':'LINKED_ITERATOR'}
+    iterator = {'iterable_lst': lst, 'current_node': None,
+                'type': 'LINKED_ITERATOR'}
     return iterator
-
 
 
 def hasNext(iterator):
     """
     Informa si se puede seguir iterando.
-    Informa si existe un nodo en la siguiente posicion de la lista, a partir de la posicion actual del iterador.
+    Informa si existe un nodo en la siguiente posicion de la lista,
+    a partir de la posicion actual del iterador.
     Args:
         iterator: El iterador creado sobre la lista
     Returns:
         True si existe un siguiente elemento, False de lo contrario
     """
-    if iterator['iterable_lst']['first'] == None:
-        return False
-    elif (iterator['iterable_lst']['first']!= None) and (iterator['current_node']) == None:
-       return True
-    elif iterator['current_node']['next'] == None:
-        return False
-    elif iterator['current_node']['next'] != None:
-        return True
+    head = iterator['iterable_lst']['first']
+    current = iterator['current_node']
+    hasnxt = False
+
+    if (head is None):
+        hasnxt = False
+    elif (head is not None) and current is None:
+        hasnxt = True
+    elif current['next'] is None:
+        hasnxt = False
+    elif current['next'] is not None:
+        hasnxt = True
+
+    return hasnxt
 
 
 def next(iterator):
@@ -67,9 +72,12 @@ def next(iterator):
     Returns:
         El siguiente elemento al último retornado por el iterador
     """
-    if (iterator['iterable_lst']['first']!= None) and (iterator['current_node'] == None):
-        iterator['current_node'] = iterator['iterable_lst']['first']
-    elif iterator['current_node']['next'] != None:
-        iterator['current_node'] = iterator['current_node']['next'] 
-    
-    return iterator['current_node'] ['info']
+    head = iterator['iterable_lst']['first']
+    current = iterator['current_node']
+
+    if (head is not None) and (current is None):
+        current = head
+    elif current['next'] is not None:
+        current = current['next']
+
+    return current['info']

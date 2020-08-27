@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computación,
+ * Universidad de Los Andes
+ *
  *
  * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
@@ -23,23 +24,21 @@
   Estructura que contiene la información a guardar en una lista encadenada
 """
 
-def newSingleNode (element):
-  """
-  Estructura que contiene la información a guardar en una lista encadenada
-  """
-  node = {'info':element,'next':None}
-  return (node)
+
+def newSingleNode(element):
+    """
+    Estructura que contiene la información a guardar en una lista encadenada
+    """
+    node = {'info': element, 'next': None}
+    return(node)
 
 
-
-def getElement (node):
-  """
-  Retorna la información de un nodo
-  Args:
-    node: El nodo a examinar
-  Returns:
-    La información almacenada en el nodo
-  """
-  return node ['info']
-
-
+def getElement(node):
+    """
+    Retorna la información de un nodo
+    Args:
+      node: El nodo a examinar
+    Returns:
+      La información almacenada en el nodo
+    """
+    return node['info']

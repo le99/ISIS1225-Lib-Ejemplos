@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computación
+ * Universidad de Los Andes
+ *
  *
  * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
@@ -20,15 +21,14 @@
  """
 
 """
-  Estructura utilizada para el manejo de los errores durante la manipulación de estructuras de datos y TADs
+  Estructura utilizada para el manejo de los errores durante la manipulación
+  de estructuras de datos y TADs
 """
 
-def reraise (excp, *args):
-  """
-  Estructura que contiene la información a guardar en una lista encadenada
-  """
-  excp.args  = args + excp.args
-  raise excp.with_traceback(excp.__traceback__) 
 
-
-
+def reraise(excp, *args):
+    """
+    Estructura que contiene la información a guardar en una lista encadenada
+    """
+    excp.args = args + excp.args
+    raise excp.with_traceback(excp.__traceback__)

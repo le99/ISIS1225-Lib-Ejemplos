@@ -24,6 +24,7 @@ import pytest
 import config
 from DISClib.DataStructures import listiterator as it
 from DISClib.ADT import queue as q
+assert config
 
 list_type = 'ARRAY_LIST'
 
