@@ -76,8 +76,8 @@ def next(iterator):
     current = iterator['current_node']
 
     if (head is not None) and (current is None):
-        current = head
+        iterator['current_node'] = head
     elif current['next'] is not None:
-        current = current['next']
+        iterator['current_node'] = current['next']
 
-    return current['info']
+    return iterator['current_node']['info']
