@@ -288,7 +288,7 @@ def nextPrime(N):
     # Base case
     if (N <= 1):
         return 2
-    prime = N
+    prime = int(N)
     found = False
     # Loop continuously until isPrime returns
     # True for a number greater than n
@@ -296,4 +296,4 @@ def nextPrime(N):
         prime = prime + 1
         if(isPrime(prime) is True):
             found = True
-    return prime
+    return int(prime)
