@@ -18,8 +18,8 @@ def compare_keys(key, element):
 
 @pytest.fixture
 def map():
-    capacity = 20
-    map = ht.newMap(capacity, maptype='PROBING', comparefunction=compare_keys)
+    capacity = 12
+    map = ht.newMap(capacity, maptype='PROBING', loadfactor=0.3, comparefunction=compare_keys)
 
     ht.put(map, '1', 'title 1')
     ht.put(map, '2', 'title 2')

@@ -35,6 +35,7 @@ assert config
 def newMap(numelements=17,
            prime=109345121,
            maptype='CHAINING',
+           loadfactor=0.5,
            comparefunction=None):
     """Crea una tabla de simbolos (map) sin orden
 
@@ -42,13 +43,14 @@ def newMap(numelements=17,
         numelements: Tamaño inicial de la tabla
         prime: Número primo utilizado en la función MAD
         maptype: separate chaining ('CHAINING' ) o linear probing('PROBING')
+        loadfactor: Factor de carga inicial de la tabla
         comparefunction: Funcion de comparación entre llaves
     Returns:
         Un nuevo map
     Raises:
         Exception
     """
-    return ht.newMap(numelements, prime, maptype, comparefunction)
+    return ht.newMap(numelements, prime, maptype, loadfactor, comparefunction)
 
 
 def put(map, key, value):
