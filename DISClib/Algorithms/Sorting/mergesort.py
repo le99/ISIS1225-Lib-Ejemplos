@@ -18,6 +18,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contribución de:
+ *
+ * Dario Correal
+ *
  """
 
 import config as cf
@@ -25,7 +30,9 @@ from DISClib.ADT import list as lt
 assert cf
 
 """
-Implementación del algoritmo mergesort.
+  Los algoritmos de este libro están basados en la implementación
+  propuesta por R.Sedgewick y Kevin Wayne en su libro
+  Algorithms, 4th Edition
 """
 
 

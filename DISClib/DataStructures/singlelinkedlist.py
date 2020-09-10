@@ -18,6 +18,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Dario Correal
+ *
  """
 
 import config
@@ -29,6 +32,10 @@ assert config
   Este módulo implementa una estructura de datos lineal mediante una lista
   encadenada sencillamente para almacenar una colección de elementos.
   Los elementos se cuentan desde la posición 1.
+
+  Los algoritmos de este libro están basados en la implementación
+  propuesta por R.Sedgewick y Kevin Wayne en su libro
+  Algorithms, 4th Edition
 """
 
 
