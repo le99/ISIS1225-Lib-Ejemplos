@@ -26,25 +26,40 @@
  """
 
 import config
-from DataStructures import bst as bst
-from DataStructures import rbt as rbt
+from DISClib.DataStructures import bst as bst
+from DISClib.DataStructures import rbt as rbt
 assert config
 
 
 def newMap(omaptype, comparefunction):
     """
-    Crea un map (tabla de símbolos) ordenado.
+    Crea una tabla de simbolos ordenada.
+    Args:
+        maptype: El tipo de map ordenado a utilizar
+                 'BST' o 'RBT'
+    Returns:
+       La tabla de símbolos ordenada sin elementos
+    Raises:
+        Exception
     """
     if (omaptype == 'BST'):
-        return bst.newMap()
+        return bst.newMap(comparefunction)
     else:
-        return rbt.newMap()
+        return rbt.newMap(comparefunction)
 
 
-def put(map, key, value, ):
+def put(map, key, value):
     """
-    Ingresa una pareja llave,valor a la tabla.  Si la llave ya existe,
+    Ingresa una pareja llave,valor. Si la llave ya existe,
     se reemplaza el valor.
+    Args:
+        map: La tabla de simbolos ordenada
+        key: La llave asociada a la pareja
+        value: El valor asociado a la pareja
+    Returns:
+        La tabla de simbolos
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.put(map, key, value)
@@ -54,44 +69,64 @@ def put(map, key, value, ):
 
 def get(map, key):
     """
-    Retorna la pareja llave, valor, cuya llave sea igual a key.
+    Retorna la pareja lleve-valor con llave igual a key
+    Args:
+        map: La tabla de simbolos
+        key: La llave asociada a la pareja
+    Returns:
+        La tabla de simbolos con la nueva pareja
+    Raises:
+        Exception
     """
-    elem = None
     if (map['type'] == 'BST'):
-        elem = bst.get(map, key)
+        return bst.get(map, key)
     else:
-        elem = rbt.get(map, key)
-    if elem:
-        return elem['value']
-    return None
+        return rbt.get(map, key)
 
 
 def remove(map, key):
     """
     Elimina la pareja llave,valor, donde llave == key.
-    Es necesario proveer la función de comparación entre llaves
+    Args:
+        map: La tabla de simbolos
+        key: La llave asociada a la pareja
+    Returns:
+        La tabla de simbolos
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
-        bst.remove(map, key)
+        return bst.remove(map, key)
     else:
-        rbt.remove(map, key)
+        return rbt.remove(map, key)
 
 
-def contains(map, key, comparefunction):
+def contains(map, key):
     """
-    Retorna True si la llave key se encuentra en la tabla
-    o False en caso contrario.
-    Es necesario proveer la función de comparación entre llaves.
+    Informa si la llave key se encuentra en la tabla de hash
+    Args:
+        map: La tabla de simbolos
+        key: La llave a buscar
+    Returns:
+        True si la llave está presente, False en caso contrario
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
-        return bst.contains(map, key, comparefunction)
+        return bst.contains(map, key)
     else:
-        return rbt.contains(map, key, comparefunction)
+        return rbt.contains(map, key)
 
 
 def size(map):
     """
-    Retornar el número de entradas en la tabla
+    Retorna el número de entradas en la tabla de simbolos
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        El número de elementos en la tabla
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.size(map)
@@ -101,7 +136,13 @@ def size(map):
 
 def isEmpty(map):
     """
-    Informa si la tabla  se encuentra vacia
+    Informa si la tabla de simbolos se encuentra vacia
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        True si la tabla es vacía, False en caso contrario
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.isEmpty(map)
@@ -112,6 +153,12 @@ def isEmpty(map):
 def keySet(map):
     """
     Retorna una lista con todas las llaves de la tabla
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        Una lista con todas las llaves de la tabla
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.keySet(map)
@@ -121,7 +168,13 @@ def keySet(map):
 
 def valueSet(map):
     """
-    Retorna una lista con todos los valores de la tabla
+    Construye una lista con los valores de la tabla
+    Args:
+        map: La tabla con los elementos
+    Returns:
+        Una lista con todos los valores
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.valueSet(map)
@@ -129,9 +182,15 @@ def valueSet(map):
         return rbt.valueSet(map)
 
 
-def min(map):
+def minKey(map):
     """
     Retorna la menor llave de la tabla de simbolos
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        La menor llave de la tabla
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.minKey(map)
@@ -139,9 +198,15 @@ def min(map):
         return rbt.minKey(map)
 
 
-def max(map):
+def maxKey(map):
     """
     Retorna la mayor llave de la tabla de simbolos
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        La mayor llave de la tabla
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.maxKey(map)
@@ -153,6 +218,12 @@ def deleteMin(map):
     """
     Encuentra y remueve la menor llave de la tabla de simbolos
     y su valor asociado
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        La tabla de simbolos sin la menor llave
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.deleteMin(map)
@@ -164,6 +235,12 @@ def deleteMax(map):
     """
     Encuentra y remueve la mayor llave de la tabla de simbolos
     y su valor asociado
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        La tabla de simbolos sin la mayor llave
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.deleteMax(map)
@@ -175,6 +252,13 @@ def floor(map, key):
     """
     Retorna la llave mas grande en la tabla de simbolos,
     menor o igual a la llave key
+    Args:
+        map: La tabla de simbolos
+        key: La llave de búsqueda
+    Returns:
+        La llave más grande menor o igual a key
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.floor(map, key)
@@ -186,6 +270,13 @@ def ceiling(map, key):
     """
     Retorna la llave mas pequeña en la tabla de simbolos,
     mayor o igual a la llave key
+    Args:
+        map: La tabla de simbolos
+        key: la llave de búsqueda
+    Returns:
+        La llave más pequeña mayor o igual a Key
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.ceiling(map, key)
@@ -195,7 +286,14 @@ def ceiling(map, key):
 
 def select(map, k):
     """
-    Retorna la k-esima llave mas pequeña de la tabla
+    Retorna la siguiente llave a la k-esima llave mas pequeña de la tabla
+    Args:
+        map: La tabla de simbolos
+        pos: la pos-esima llave mas pequeña
+    Returns:
+        La llave más pequeña mayor o igual a Key
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.select(map, k)
@@ -206,6 +304,13 @@ def select(map, k):
 def rank(map, key):
     """
     Retorna el número de llaves en la tabla estrictamente menores que key
+    Args:
+        map: La tabla de simbolos
+        pos: la pos-esima llave mas pequeña
+    Returns:
+        La llave más pequeña mayor o igual a Key
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.rank(map, key)
@@ -215,7 +320,17 @@ def rank(map, key):
 
 def keys(map, keylo, keyhi):
     """
-    Retorna todas las llaves encontradas en el rango dado por keylo y keyhi
+    Retorna todas las llaves del arbol que se encuentren entre
+    [keylo, keyhi]
+
+    Args:
+        map: La tabla de simbolos
+        keylo: limite inferior
+        keylohi: limite superiorr
+    Returns:
+        Las llaves en el rago especificado
+    Raises:
+        Exception
     """
     if (map['type'] == 'BST'):
         return bst.keys(map, keylo, keyhi)
@@ -224,6 +339,15 @@ def keys(map, keylo, keyhi):
 
 
 def height(map):
+    """
+    Retorna la altura del arbol de busqueda
+    Args:
+        map: La tabla de simbolos
+    Returns:
+        La altura del arbol
+    Raises:
+        Exception
+    """
     if (map['type'] == 'BST'):
         return bst.height(map)
     else:
@@ -231,6 +355,19 @@ def height(map):
 
 
 def values(map, keylo, keyhi):
+    """
+    Retorna todas los valores del arbol que se encuentren entre
+    [keylo, keyhi]
+
+    Args:
+        map: La tabla de simbolos
+        keylo: limite inferior
+        keylohi: limite superiorr
+    Returns:
+        Las llaves en el rago especificado
+    Raises:
+        Exception
+    """
     if (map['type'] == 'BST'):
         return bst.valueRange(map, keylo, keyhi)
     else:

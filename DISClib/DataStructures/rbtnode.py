@@ -40,7 +40,7 @@ def newNode(key, value, size, color):
     Returns:
         Un nodo con la pareja <llave, valor>
     Raises:
-        Excep
+        Exception
     """
     node = {'key': key,
             'value': value,
@@ -63,6 +63,35 @@ def isRed(node):
     Returns:
         True si el nodo es rojo, False de lo contrario
     Raises:
-        Excep
+        Exception
     """
     return (node['color'] == RED)
+
+
+def getValue(node):
+    """ Retorna el valor asociado a una pareja llave valor
+    Args:
+        node: El nodo con la pareja llave-valor
+    Returns:
+        El valor almacenado en el nodo
+    Raises:
+        Exception
+    """
+    if (node is not None):
+        return(node['value'])
+    return node
+
+
+def getKey(node):
+    """ Retorna la llave asociado a una pareja llave valor
+    Args:
+        node: El nodo con la pareja llave-valor
+    Returns:
+        La llave almacenada en el nodo
+    Raises:
+        Exception
+    """
+    if (node is not None):
+        return(node['key'])
+    return node
+

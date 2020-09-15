@@ -27,6 +27,7 @@
 
 import config
 from DISClib.DataStructures import bstnode
+from DISClib.Utils import error as error
 from DISClib.ADT import list as lt
 assert config
 
@@ -46,16 +47,19 @@ def newMap(compfunction):
     """
     Crea una tabla de simbolos ordenada.
     Args:
-        node: El nodo a revisar
-
+        compfunction: La funcion de comparacion
     Returns:
-        True si el nodo es rojo, False de lo contrario
+        La tabla de símbolos ordenada sin elementos
     Raises:
-        Excep
+        Exception
     """
-    bst = {'root': None,
-           'cmpfunction': compfunction}
-    return bst
+    try:
+        bst = {'root': None,
+               'cmpfunction': compfunction,
+               'type': 'BST'}
+        return bst
+    except Exception as exp:
+        error.reraise(exp, 'BST:NewMap')
 
 
 def put(bst, key, value):
@@ -69,10 +73,13 @@ def put(bst, key, value):
     Returns:
         El arbol con la nueva pareja
     Raises:
-        Excep
+        Exception
     """
-    bst['root'] = insertNode(bst['root'], key, value, bst['cmpfunction'])
-    return bst
+    try:
+        bst['root'] = insertNode(bst['root'], key, value, bst['cmpfunction'])
+        return bst
+    except Exception as exp:
+        error.reraise(exp, 'Bst:Put')
 
 
 def get(bst, key):
@@ -82,12 +89,15 @@ def get(bst, key):
         bst: El arbol de búsqueda
         key: La llave asociada a la pareja
     Returns:
-        El arbol con la nueva pareja
+        La pareja llave-valor en caso de que haya sido encontrada
     Raises:
-        Excep
+        Exception
     """
-    node = getNode(bst['root'], key, bst['cmpfunction'])
-    return node
+    try:
+        node = getNode(bst['root'], key, bst['cmpfunction'])
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'Bst:get')
 
 
 def remove(bst, key):
@@ -99,10 +109,13 @@ def remove(bst, key):
     Returns:
         El arbol sin la pareja key-value
     Raises:
-        Excep
+        Exception
     """
-    bst['root'] = removeNode(bst['root'], key, bst['cmpfunction'])
-    return bst
+    try:
+        bst['root'] = removeNode(bst['root'], key, bst['cmpfunction'])
+        return bst
+    except Exception as exp:
+        error.reraise(exp, 'Bst:Remove')
 
 
 def contains(bst, key):
@@ -114,9 +127,12 @@ def contains(bst, key):
     Returns:
         True si la llave está presente False en caso contrario
     Raises:
-        Excep
+        Exception
     """
-    return (get(bst, key) is not None)
+    try:
+        return (get(bst, key) is not None)
+    except Exception as exp:
+        error.reraise(exp, 'Bst:Contains')
 
 
 def size(bst):
@@ -127,68 +143,83 @@ def size(bst):
     Returns:
         El número de elementos en la tabla
     Raises:
-        Excep
+        Exception
     """
-    return sizeTree(bst['root'])
+    try:
+        return sizeTree(bst['root'])
+    except Exception as exp:
+        error.reraise(exp, 'Bst:size')
 
 
 def isEmpty(bst):
     """
-    Informa si la tabla de hash se encuentra vacia
+    Informa si la tabla de simbolos se encuentra vacia
     Args:
         bst: El arbol de búsqueda
     Returns:
         True si la tabla es vacía, False en caso contrario
     Raises:
-        Excep
+        Exception
     """
-    return (bst['root'] is None)
+    try:
+        return (bst['root'] is None)
+    except Exception as exp:
+        error.reraise(exp, 'BST:isempty')
 
 
 def keySet(bst):
     """
-    Retorna una lista con todas las llaves de la tabla de hash
+    Retorna una lista con todas las llaves de la tabla
     Args:
-        bst: La tabla con los elementos
+        bst: La tabla de simbolos
     Returns:
-        Una lista con todas las llaves
+        Una lista con todas las llaves de la tabla
     Raises:
-        Excep
+        Exception
     """
-    klist = lt.newList()
-    klist = keySetTree(bst, klist)
-    return klist
+    try:
+        klist = lt.newList()
+        klist = keySetTree(bst, klist)
+        return klist
+    except Exception as exp:
+        error.reraise(exp, 'BST:KeySet')
 
 
 def valueSet(bst):
     """
-    Construye una lista con los valorers de la tabla
+    Construye una lista con los valores de la tabla
     Args:
         bst: La tabla con los elementos
     Returns:
         Una lista con todos los valores
     Raises:
-        Excep
+        Exception
     """
-    vlist = lt.newList()
-    vlist = valueSetTree(bst, vlist)
-    return vlist
+    try:
+        vlist = lt.newList()
+        vlist = valueSetTree(bst, vlist)
+        return vlist
+    except Exception as exp:
+        error.reraise(exp, 'BST:valueSet')
 
 
 def minKey(bst):
     """
     Retorna la menor llave de la tabla de simbolos
     Args:
-        bst: La tabla con los elementos
+        bst: La tabla de simbolos
     Returns:
         La menor llave de la tabla
     Raises:
-        Excep
+        Exception
     """
-    node = minKeyNode(bst['root'])
-    if (node is not None):
-        return node['key']
-    return node
+    try:
+        node = minKeyNode(bst['root'])
+        if (node is not None):
+            return node['key']
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'BST:minKey')
 
 
 def maxKey(bst):
@@ -199,12 +230,15 @@ def maxKey(bst):
     Returns:
         La mayor llave de la tabla
     Raises:
-        Excep
+        Exception
     """
-    node = maxKeyNode(bst['root'])
-    if (node is not None):
-        return node['key']
-    return node
+    try:
+        node = maxKeyNode(bst['root'])
+        if (node is not None):
+            return node['key']
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'BST:maxKey')
 
 
 def deleteMin(bst):
@@ -216,9 +250,12 @@ def deleteMin(bst):
     Returns:
         La tabla de simbolos sin la menor llave
     Raises:
-        Excep
+        Exception
     """
-    return deleteMinTree(bst['root'])
+    try:
+        return deleteMinTree(bst['root'])
+    except Exception as exp:
+        error.reraise(exp, 'BST:deleteMin')
 
 
 def deleteMax(bst):
@@ -230,9 +267,12 @@ def deleteMax(bst):
     Returns:
         La tabla de simbolos sin la mayor llave
     Raises:
-        Excep
+        Exception
     """
-    return deleteMaxTree(bst['root'])
+    try:
+        return deleteMaxTree(bst['root'])
+    except Exception as exp:
+        error.reraise(exp, 'BST:deleteMax')
 
 
 def floor(bst, key):
@@ -245,12 +285,15 @@ def floor(bst, key):
     Returns:
         La llave más grande menor o igual a key
     Raises:
-        Excep
+        Exception
     """
-    node = floorKey(bst['root'], key, bst['cmpfunction'])
-    if (node is not None):
-        return node['key']
-    return node
+    try:
+        node = floorKey(bst['root'], key, bst['cmpfunction'])
+        if (node is not None):
+            return node['key']
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'BST:floor')
 
 
 def ceiling(bst, key):
@@ -263,12 +306,15 @@ def ceiling(bst, key):
     Returns:
         La llave más pequeña mayor o igual a Key
     Raises:
-        Excep
+        Exception
     """
-    node = ceilingKey(bst['root'], key, bst['cmpfunction'])
-    if (node is not None):
-        return node['key']
-    return node
+    try:
+        node = ceilingKey(bst['root'], key, bst['cmpfunction'])
+        if (node is not None):
+            return node['key']
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'BST:ceiling')
 
 
 def select(bst, pos):
@@ -280,12 +326,15 @@ def select(bst, pos):
     Returns:
         La llave más pequeña mayor o igual a Key
     Raises:
-        Excep
+        Exception
     """
-    node = selectKey(bst['root'], pos)
-    if (node is not None):
-        return node['key']
-    return node
+    try:
+        node = selectKey(bst['root'], pos)
+        if (node is not None):
+            return node['key']
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'BST:Select')
 
 
 def rank(bst, key):
@@ -293,13 +342,16 @@ def rank(bst, key):
     Retorna el número de llaves en la tabla estrictamente menores que key
     Args:
         bst: La tabla de simbolos
-        pos: la pos-esima llave mas pequeña
+        key: La llave de búsqueda
     Returns:
-        La llave más pequeña mayor o igual a Key
+        El nuemero de llaves encontradas
     Raises:
-        Excep
+        Exception
     """
-    return rankKeys(bst['root'], key, bst['cmpfunction'])
+    try:
+        return rankKeys(bst['root'], key, bst['cmpfunction'])
+    except Exception as exp:
+        error.reraise(exp, 'BST:rank')
 
 
 def height(bst):
@@ -310,9 +362,12 @@ def height(bst):
     Returns:
         La altura del arbol
     Raises:
-        Excep
+        Exception
     """
-    return heightTree(bst['root'])
+    try:
+        return heightTree(bst['root'])
+    except Exception as exp:
+        error.reraise(exp, 'BST:height')
 
 
 def keys(bst, keylo, keyhi):
@@ -327,11 +382,15 @@ def keys(bst, keylo, keyhi):
     Returns:
         Las llaves en el rago especificado
     Raises:
-        Excep
+        Exception
     """
-    lstkeys = lt.newList('SINGLELINKED', bst['cmpfunction'])
-    lstkeys = keysRange(bst['root'], keylo, keyhi, lstkeys, bst['cmpfunction'])
-    return lstkeys
+    try:
+        lstkeys = lt.newList('SINGLELINKED', bst['cmpfunction'])
+        lstkeys = keysRange(bst['root'], keylo, keyhi, lstkeys,
+                            bst['cmpfunction'])
+        return lstkeys
+    except Exception as exp:
+        error.reraise(exp, 'BST:keys')
 
 
 def values(bst, keylo, keyhi):
@@ -346,13 +405,15 @@ def values(bst, keylo, keyhi):
     Returns:
         Las llaves en el rago especificado
     Raises:
-        Excep
+        Exception
     """
-    lstvalues = lt.newList('SINGLELINKED', bst['cmpfunction'])
-    lstvalues = valuesRange(bst['root'], keylo, keyhi, lstvalues,
-                            bst['cmpfunction'])
-    return lstvalues
-
+    try:
+        lstvalues = lt.newList('SINGLELINKED', bst['cmpfunction'])
+        lstvalues = valuesRange(bst['root'], keylo, keyhi, lstvalues,
+                                bst['cmpfunction'])
+        return lstvalues
+    except Exception as exp:
+        error.reraise(exp, 'BST:Values')
 
 # _____________________________________________________________________
 #            Funciones Helper
@@ -371,24 +432,29 @@ def insertNode(root, key, value, cmpfunction):
     Returns:
         El arbol con la nueva pareja
     Raises:
-        Excep
+        Exception
     """
-    if (root is None):
-        root = bstnode.newNode(key, value, 1)
-    else:
-        cmp = cmpfunction(key, root['key'])
-        if (cmp < 0):           # La llave a insertar es menor que la raiz
-            root['left'] = insertNode(root['left'], key, value, cmpfunction)
+    try:
+        if (root is None):
+            root = bstnode.newNode(key, value, 1)
+        else:
+            cmp = cmpfunction(key, root['key'])
+            if (cmp < 0):           # La llave a insertar es menor que la raiz
+                root['left'] = insertNode(root['left'], key, value,
+                                          cmpfunction)
 
-        elif (cmp > 0):        # La llave a insertar es mayor que la raiz
-            root['right'] = insertNode(root['right'], key, value, cmpfunction)
+            elif (cmp > 0):        # La llave a insertar es mayor que la raiz
+                root['right'] = insertNode(root['right'], key, value,
+                                           cmpfunction)
 
-        else:                  # La llave a insertar es igual que la raiz
-            root['value'] = value
-    leftsize = sizeTree(root['left'])
-    rightsize = sizeTree(root['right'])
-    root['size'] = 1 + leftsize + rightsize
-    return root
+            else:                  # La llave a insertar es igual que la raiz
+                root['value'] = value
+        leftsize = sizeTree(root['left'])
+        rightsize = sizeTree(root['right'])
+        root['size'] = 1 + leftsize + rightsize
+        return root
+    except Exception as exp:
+        error.reraise(exp, 'BST:insertNode')
 
 
 def getNode(root, key, cmpfunction):
@@ -401,18 +467,21 @@ def getNode(root, key, cmpfunction):
     Returns:
         El arbol con la nueva pareja
     Raises:
-        Excep
+        Exception
     """
-    node = None
-    if (root is not None):
-        cmp = cmpfunction(key, root['key'])
-        if (cmp == 0):
-            node = root
-        elif (cmp < 0):
-            node = getNode(root['left'], key, cmpfunction)
-        else:
-            node = getNode(root['right'], key, cmpfunction)
-    return node
+    try:
+        node = None
+        if (root is not None):
+            cmp = cmpfunction(key, root['key'])
+            if (cmp == 0):
+                node = root
+            elif (cmp < 0):
+                node = getNode(root['left'], key, cmpfunction)
+            else:
+                node = getNode(root['right'], key, cmpfunction)
+        return node
+    except Exception as exp:
+        error.reraise(exp, 'BST:getNode')
 
 
 def removeNode(root, key, cmpfunction):
@@ -424,42 +493,48 @@ def removeNode(root, key, cmpfunction):
     Returns:
         El arbol sin la pareja key-value
     Raises:
-        Excep
+        Exception
     """
-    if (root is not None):
-        cmp = cmpfunction(key, root['key'])
-        if (cmp == 0):  # La llave es la que se busca
-            if (root['right'] is None):   # No tiene hijo derecho
-                return root['left']
-            elif (root['left'] is None):  # No tiene hijo izquierdo
-                return root['right']
-            else:      # se cambia por el menor de los mayores
-                elem = root
-                root = minKeyNode(elem['right'])
-                root['right'] = deleteMinTree(elem['right'])
-                root['left'] = elem['left']
-        elif (cmp < 0):
-            root['left'] = removeNode(root['left'], key, cmpfunction)
-        else:
-            root['right'] = removeNode(root['right'], key, cmpfunction)
-        root['size'] = 1 + sizeTree(root['left']) + sizeTree(root['right'])
-    return root
+    try:
+        if (root is not None):
+            cmp = cmpfunction(key, root['key'])
+            if (cmp == 0):  # La llave es la que se busca
+                if (root['right'] is None):   # No tiene hijo derecho
+                    return root['left']
+                elif (root['left'] is None):  # No tiene hijo izquierdo
+                    return root['right']
+                else:      # se cambia por el menor de los mayores
+                    elem = root
+                    root = minKeyNode(elem['right'])
+                    root['right'] = deleteMinTree(elem['right'])
+                    root['left'] = elem['left']
+            elif (cmp < 0):
+                root['left'] = removeNode(root['left'], key, cmpfunction)
+            else:
+                root['right'] = removeNode(root['right'], key, cmpfunction)
+            root['size'] = 1 + sizeTree(root['left']) + sizeTree(root['right'])
+        return root
+    except Exception as exp:
+        error.reraise(exp, 'BST:removeNode')
 
 
 def sizeTree(root):
     """
     Retornar el número de entradas en la a partir un punto dado
     Args:
-        bst: El arbol de búsqueda
+        root: El arbol de búsqueda
     Returns:
         El número de elementos en la tabla
     Raises:
-        Excep
+        Exception
     """
-    if (root is None):
-        return 0
-    else:
-        return root['size']
+    try:
+        if (root is None):
+            return 0
+        else:
+            return root['size']
+    except Exception as exp:
+        error.reraise(exp, 'BST:sizeTree')
 
 
 def valueSetTree(root, klist):
@@ -471,13 +546,16 @@ def valueSetTree(root, klist):
     Returns:
         Una lista con todos los valores
     Raises:
-        Excep
+        Exception
     """
-    if (root is not None):
-        valueSetTree(root['left'], klist)
-        lt.addLast(klist, root['value'])
-        valueSetTree(root['right'], klist)
-    return klist
+    try:
+        if (root is not None):
+            valueSetTree(root['left'], klist)
+            lt.addLast(klist, root['value'])
+            valueSetTree(root['right'], klist)
+        return klist
+    except Exception as exp:
+        error.reraise(exp, 'BST:valueSetTree')
 
 
 def keySetTree(root, klist):
@@ -489,13 +567,16 @@ def keySetTree(root, klist):
     Returns:
         Una lista con todos las llaves
     Raises:
-        Excep
+        Exception
     """
-    if (root is not None):
-        keySetTree(root['left'], klist)
-        lt.addLast(klist, root['key'])
-        keySetTree(root['right'], klist)
-    return klist
+    try:
+        if (root is not None):
+            keySetTree(root['left'], klist)
+            lt.addLast(klist, root['key'])
+            keySetTree(root['right'], klist)
+        return klist
+    except Exception as exp:
+        error.reraise(exp, 'BST:keySetTree')
 
 
 def minKeyNode(root):
@@ -506,15 +587,18 @@ def minKeyNode(root):
     Returns:
         El elemento mas izquierdo del arbol
     Raises:
-        Excep
+        Exception
     """
-    min = None
-    if (root is not None):
-        if (root['left'] is None):
-            min = root
-        else:
-            min = minKeyNode(root['left'])
-    return min
+    try:
+        min = None
+        if (root is not None):
+            if (root['left'] is None):
+                min = root
+            else:
+                min = minKeyNode(root['left'])
+        return min
+    except Exception as exp:
+        error.reraise(exp, 'BST:minKeyNode')
 
 
 def maxKeyNode(root):
@@ -525,15 +609,18 @@ def maxKeyNode(root):
     Returns:
         El elemento mas derecho del árbol
     Raises:
-        Excep
+        Exception
     """
-    max = None
-    if (root is not None):
-        if (root['right'] is None):
-            max = root
-        else:
-            max = maxKeyNode(root['right'])
-    return max
+    try:
+        max = None
+        if (root is not None):
+            if (root['right'] is None):
+                max = root
+            else:
+                max = maxKeyNode(root['right'])
+        return max
+    except Exception as exp:
+        error.reraise(exp, 'BST:maxKeyNode')
 
 
 def deleteMinTree(root):
@@ -547,13 +634,16 @@ def deleteMinTree(root):
     Raises:
         Excep
     """
-    if (root is not None):
-        if (root['left'] is None):
-            return root['right']
-        else:
-            root['left'] = deleteMinTree(root['left'])
-        root['size'] = sizeTree(root['left']) + sizeTree(root['right']) + 1
-    return root
+    try:
+        if (root is not None):
+            if (root['left'] is None):
+                return root['right']
+            else:
+                root['left'] = deleteMinTree(root['left'])
+            root['size'] = sizeTree(root['left']) + sizeTree(root['right']) + 1
+        return root
+    except Exception as exp:
+        error.reraise(exp, 'BST:deleteMinTree')
 
 
 def deleteMaxTree(root):
@@ -567,13 +657,16 @@ def deleteMaxTree(root):
     Raises:
         Excep
     """
-    if (root is not None):
-        if (root['right'] is None):
-            return root['left']
-        else:
-            root['right'] = deleteMaxTree(root['right'])
-        root['size'] = sizeTree(root['left']) + sizeTree(root['right']) + 1
-    return root
+    try:
+        if (root is not None):
+            if (root['right'] is None):
+                return root['left']
+            else:
+                root['right'] = deleteMaxTree(root['right'])
+            root['size'] = sizeTree(root['left']) + sizeTree(root['right']) + 1
+        return root
+    except Exception as exp:
+        error.reraise(exp, 'BST:deleteMaxTree')
 
 
 def floorKey(root, key, cmpfunction):
@@ -587,18 +680,21 @@ def floorKey(root, key, cmpfunction):
     Raises:
         Excep
     """
-    if (root is not None):
-        cmp = cmpfunction(key, root['key'])
-        if (cmp == 0):
-            return root
-        if (cmp < 0):
-            return floorKey(root['left'], key, cmpfunction)
-        t = floorKey(root['right'], key, cmpfunction)
-        if (t is not None):
-            return t
-        else:
-            return root
-    return root
+    try:
+        if (root is not None):
+            cmp = cmpfunction(key, root['key'])
+            if (cmp == 0):
+                return root
+            if (cmp < 0):
+                return floorKey(root['left'], key, cmpfunction)
+            t = floorKey(root['right'], key, cmpfunction)
+            if (t is not None):
+                return t
+            else:
+                return root
+        return root
+    except Exception as exp:
+        error.reraise(exp, 'BST:floorKey')
 
 
 def ceilingKey(root, key, cmpfunction):
@@ -613,18 +709,21 @@ def ceilingKey(root, key, cmpfunction):
     Raises:
         Excep
     """
-    if (root is not None):
-        cmp = cmpfunction(key, root['key'])
-        if (cmp == 0):
-            return root
-        if (cmp < 0):
-            t = ceilingKey(root['left'], key, cmpfunction)
-            if (t is not None):
-                return t
-            else:
+    try:
+        if (root is not None):
+            cmp = cmpfunction(key, root['key'])
+            if (cmp == 0):
                 return root
-        return ceilingKey(root['right'], key, cmpfunction)
-    return None
+            if (cmp < 0):
+                t = ceilingKey(root['left'], key, cmpfunction)
+                if (t is not None):
+                    return t
+                else:
+                    return root
+            return ceilingKey(root['right'], key, cmpfunction)
+        return None
+    except Exception as exp:
+        error.reraise(exp, 'BST:ceilingKey')
 
 
 def selectKey(root, key):
@@ -638,15 +737,18 @@ def selectKey(root, key):
     Raises:
         Excep
     """
-    if (root is not None):
-        cont = sizeTree(root['left'])
-        if (cont > key):
-            return selectKey(root['left'], key)
-        elif (cont < key):
-            return selectKey(root['right'], key-cont-1)
-        else:
-            return root
-    return root
+    try:
+        if (root is not None):
+            cont = sizeTree(root['left'])
+            if (cont > key):
+                return selectKey(root['left'], key)
+            elif (cont < key):
+                return selectKey(root['right'], key-cont-1)
+            else:
+                return root
+        return root
+    except Exception as exp:
+        error.reraise(exp, 'BST:selectKey')
 
 
 def rankKeys(root, key, cmpfunction):
@@ -654,24 +756,27 @@ def rankKeys(root, key, cmpfunction):
     Retorna el número de llaves en la tabla estrictamente menores que key
     Args:
         bst: La tabla de simbolos
-        pos: la pos-esima llave mas pequeña
+        key: la llave de busqueda
     Returns:
-        La llave más pequeña mayor o igual a Key
+        El numero de llaves
     Raises:
-        Excep
+        Exception
     """
-    if (root is not None):
-        cmp = cmpfunction(key, root['key'])
-        if (cmp < 0):
-            return rankKeys(root['left'], key, cmpfunction)
-        elif (cmp > 0):
-            leftsize = sizeTree(root['left'])
-            rank = rankKeys(root['right'], key, cmpfunction)
-            total = 1 + leftsize + rank
-            return total
-        else:
-            return sizeTree(root['left'])
-    return 0
+    try:
+        if (root is not None):
+            cmp = cmpfunction(key, root['key'])
+            if (cmp < 0):
+                return rankKeys(root['left'], key, cmpfunction)
+            elif (cmp > 0):
+                leftsize = sizeTree(root['left'])
+                rank = rankKeys(root['right'], key, cmpfunction)
+                total = 1 + leftsize + rank
+                return total
+            else:
+                return sizeTree(root['left'])
+        return 0
+    except Exception as exp:
+        error.reraise(exp, 'BST:ranKeys')
 
 
 def heightTree(root):
@@ -684,10 +789,14 @@ def heightTree(root):
     Raises:
         Excep
     """
-    if (root is None):
-        return -1
-    else:
-        return 1 + max(heightTree(root['left']),  heightTree(root['right']))
+    try:
+        if (root is None):
+            return -1
+        else:
+            return 1 + max(heightTree(root['left']),
+                           heightTree(root['right']))
+    except Exception as exp:
+        error.reraise(exp, 'BST:heihgTree')
 
 
 def keysRange(root, keylo, keyhi, lstkeys, cmpfunction):
@@ -702,17 +811,20 @@ def keysRange(root, keylo, keyhi, lstkeys, cmpfunction):
     Raises:
         Excep
     """
-    if (root is not None):
-        complo = cmpfunction(keylo, root['key'])
-        comphi = cmpfunction(keyhi, root['key'])
+    try:
+        if (root is not None):
+            complo = cmpfunction(keylo, root['key'])
+            comphi = cmpfunction(keyhi, root['key'])
 
-        if (complo < 0):
-            keysRange(root['left'], keylo, keyhi, lstkeys, cmpfunction)
-        if ((complo <= 0) and (comphi >= 0)):
-            lt.addLast(lstkeys, root['key'])
-        if (comphi > 0):
-            keysRange(root['right'], keylo, keyhi, lstkeys, cmpfunction)
-    return lstkeys
+            if (complo < 0):
+                keysRange(root['left'], keylo, keyhi, lstkeys, cmpfunction)
+            if ((complo <= 0) and (comphi >= 0)):
+                lt.addLast(lstkeys, root['key'])
+            if (comphi > 0):
+                keysRange(root['right'], keylo, keyhi, lstkeys, cmpfunction)
+        return lstkeys
+    except Exception as exp:
+        error.reraise(exp, 'BST:keysRange')
 
 
 def valuesRange(root, keylo, keyhi, lstvalues, cmpfunction):
@@ -728,14 +840,17 @@ def valuesRange(root, keylo, keyhi, lstvalues, cmpfunction):
     Raises:
         Excep
     """
-    if (root is not None):
-        complo = cmpfunction(keylo, root['key'])
-        comphi = cmpfunction(keyhi, root['key'])
+    try:
+        if (root is not None):
+            complo = cmpfunction(keylo, root['key'])
+            comphi = cmpfunction(keyhi, root['key'])
 
-        if (complo < 0):
-            keysRange(root['left'], keylo, keyhi, lstvalues, cmpfunction)
-        if ((complo <= 0) and (comphi >= 0)):
-            lt.addLast(lstvalues, root['value'])
-        if (comphi > 0):
-            keysRange(root['right'], keylo, keyhi, lstvalues, cmpfunction)
-    return lstvalues
+            if (complo < 0):
+                keysRange(root['left'], keylo, keyhi, lstvalues, cmpfunction)
+            if ((complo <= 0) and (comphi >= 0)):
+                lt.addLast(lstvalues, root['value'])
+            if (comphi > 0):
+                keysRange(root['right'], keylo, keyhi, lstvalues, cmpfunction)
+        return lstvalues
+    except Exception as exp:
+        error.reraise(exp, 'BST:valuesrange')
