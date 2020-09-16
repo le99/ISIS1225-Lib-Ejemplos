@@ -2,6 +2,7 @@ import pytest
 import config
 from DISClib.ADT import orderedmap as om
 from DISClib.ADT import list as lt
+from DISClib.Algorithms.Trees import traversal as tv
 assert config
 
 
@@ -270,3 +271,29 @@ def test_remove(tree):
     tree = om.remove(tree, 11)
     assert om.size(tree) == 15
     assert om.contains(tree, 11) is False
+
+
+def test_traversal(tree):
+    tree = om.put(tree, 23, 'book21')
+    tree = om.put(tree, 7, 'book7')
+    tree = om.put(tree, 30, 'book30')
+    tree = om.put(tree, 5, 'book5')
+    tree = om.put(tree, 4, 'book4')
+    tree = om.put(tree, 3, 'book3')
+    tree = om.put(tree, 20, 'book20')
+    tree = om.put(tree, 25, 'book25')
+    tree = om.put(tree, 35, 'book35')
+    tree = om.put(tree, 29, 'book29')
+    tree = om.put(tree, 11, 'book11')
+    tree = om.put(tree, 15, 'book15')
+    tree = om.put(tree, 10, 'book10')
+    tree = om.put(tree, 37, 'book11')
+    tree = om.put(tree, 40, 'book15')
+    tree = om.put(tree, 45, 'book10')
+    assert om.size(tree) == 16
+    lstin = tv.inorder(tree)
+    lstpre = tv.preorder(tree)
+    lstpost = tv.postorder(tree)
+    assert lt.size(lstin) == 16
+    assert lt.size(lstpre) == 16
+    assert lt.size(lstpost) == 16
