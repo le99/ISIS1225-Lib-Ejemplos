@@ -33,7 +33,7 @@ assert config
   encadenada sencillamente para almacenar una colección de elementos.
   Los elementos se cuentan desde la posición 1.
 
-  Los algoritmos de este libro están basados en la implementación
+  Este código está basado en la implementación
   propuesta por R.Sedgewick y Kevin Wayne en su libro
   Algorithms, 4th Edition
 """

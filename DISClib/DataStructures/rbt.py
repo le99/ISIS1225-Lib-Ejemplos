@@ -36,7 +36,7 @@ assert config
 Implementación de una tabla de simbolos ordenada, mediante un arbol binario
 balanceado Red-Black.
 
-Los algoritmos de este libro están basados en la implementación
+Este código está basados en la implementación
 propuesta por R.Sedgewick y Kevin Wayne en su libro
 Algorithms, 4th Edition
 """

@@ -33,7 +33,8 @@ assert config
   Este módulo implementa una estructura de datos lineal,
   como un arreglo de apuntadores a los nodos de la lista.
 
-  Los algoritmos de este libro están basados en la implementación
+
+  Este código está basado en la implementación
   propuesta por R.Sedgewick y Kevin Wayne en su libro
   Algorithms, 4th Edition
 """
