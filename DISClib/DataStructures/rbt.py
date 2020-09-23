@@ -54,7 +54,7 @@ def newMap(comparefunction=None):
     Returns:
         La tabla de símbolos ordenada sin elementos
     Raises:
-        Excep
+        Exception
     """
     try:
         rbt = {'root': None,
