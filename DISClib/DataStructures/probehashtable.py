@@ -38,9 +38,7 @@ mecanismo de manejo de colisiones.  No se considera el caso de crecer
 el tamaño de la tabla (resizing / rehashing)
 
 Este código está basado en las implementaciones propuestas en:
-
 - Algorithms, 4th Edition.  R. Sedgewick
-
 - Data Structures and Algorithms in Java, 6th Edition.  Michael Goodrich
 """
 
@@ -56,7 +54,7 @@ def newMap(numelements, prime, loadfactor, comparefunction):
     Args:
         numelements: Tamaño inicial de la tabla
         prime: Número primo utilizado en la función MAD
-        loadfactor: Factor de carga inicial de la tabla
+        loadfactor: Factor de carga maximo de la tabla
         comparefunction: Funcion de comparación entre llaves
     Returns:
         Un nuevo map
@@ -75,6 +73,8 @@ def newMap(numelements, prime, loadfactor, comparefunction):
                  'scale': scale,
                  'shift': shift,
                  'table': table,
+                 'currentfactor': 0,
+                 'limitfactor': loadfactor,
                  'comparefunction': comparefunction,
                  'size': 0,
                  'type': 'PROBING'}
@@ -100,6 +100,10 @@ def put(map, key, value):
     lt.changeInfo(map['table'], abs(pos), entry)
     if (pos < 0):                   # Se reemplaza el valor con el nuevo valor
         map['size'] += 1
+        map['currentfactor'] = map['size'] / map['capacity']
+
+    if (map['currentfactor'] >= map['limitfactor']):
+        rehash(map)
     return map
 
 
@@ -294,6 +298,34 @@ def isAvailable(table, pos):
     if (entry['key'] is None or entry['key'] == '__EMPTY__'):
         return True
     return False
+
+
+def rehash(map):
+    """
+    Se aumenta la capacidad de la tabla al doble y se hace rehash de
+    todos los elementos de la tabla.
+    """
+    newtable = lt.newList('ARRAY_LIST', map['comparefunction'])
+    capacity = nextPrime(map['capacity']*2)
+    for _ in range(capacity):
+        entry = me.newMapEntry(None, None)
+        lt.addLast(newtable, entry)
+    oldtable = map['table']
+    map['size'] = 0
+    map['currentfactor'] = 0
+    map['table'] = newtable
+    map['capacity'] = capacity
+    for pos in range(lt.size(oldtable)):
+        entry = lt.getElement(oldtable, pos+1)
+        if (entry['key'] is not None and entry['key'] != '__EMPTY__'):
+            hash = hashValue(map, entry['key'])
+            pos = findSlot(map, entry['key'], hash, map['comparefunction'])
+            lt.changeInfo(map['table'], abs(pos), entry)
+            if (pos < 0):
+                map['size'] += 1
+                map['currentfactor'] = map['size'] / map['capacity']
+    return map
+
 
 # Function that returns True if n
 # is prime else returns False
