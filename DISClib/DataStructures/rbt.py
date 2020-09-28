@@ -876,7 +876,7 @@ def valuesRange(root, keylo, keyhi, lstvalues, cmpfunction):
         keylo: limite inferior
         keylohi: limite superior
     Returns:
-        Las llaves en el rago especificado
+        Las llaves en el rango especificado
     Raises:
         Excep
     """
@@ -886,11 +886,13 @@ def valuesRange(root, keylo, keyhi, lstvalues, cmpfunction):
             comphi = cmpfunction(keyhi, root['key'])
 
             if (complo < 0):
-                keysRange(root['left'], keylo, keyhi, lstvalues, cmpfunction)
+                valuesRange(root['left'], keylo, keyhi, lstvalues,
+                            cmpfunction)
             if ((complo <= 0) and (comphi >= 0)):
                 lt.addLast(lstvalues, root['value'])
             if (comphi > 0):
-                keysRange(root['right'], keylo, keyhi, lstvalues, cmpfunction)
+                valuesRange(root['right'], keylo, keyhi, lstvalues,
+                            cmpfunction)
         return lstvalues
     except Exception as exp:
         error.reraise(exp, 'BST:valuesrange')
