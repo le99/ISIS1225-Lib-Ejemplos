@@ -25,6 +25,12 @@ def test_empty(tree):
     assert om.isEmpty(tree) is True
 
 
+def test_root(tree):
+    om.put(tree, 100, "100")
+    om.put(tree, 50, "50")
+    assert om.size(tree) == 2
+
+
 def test_put_empty(tree):
     tree = om.put(tree, 1, 'book1')
     assert om.size(tree) == 1

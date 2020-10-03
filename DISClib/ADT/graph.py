@@ -17,6 +17,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contribución de:
+ *
+ * Dario Correal
+ *
  """
 
 import config
@@ -24,7 +29,7 @@ from DISClib.DataStructures import graphstructure as gr
 assert config
 
 """
-Este archivo contiene la implementacióndel TAD grafo no dirigido
+Este archivo contiene la implementación del TAD grafo no dirigido
 """
 
 
@@ -38,10 +43,11 @@ def newGraph(datastructure="ADJ_LIST",
 
     Args:
         size: Tamaño inicial del grafo
-        cmpfunction: Funcion de comparacion
+        comparefunction: Funcion de comparacion
         directed: Indica si el grafo es dirigido o no
+        datastructure: Estructura de datos utilizada
     Returns:
-        Un nuevo grafo
+        Un nuevo grafo vacío
     Raises:
         Exception
     """
@@ -56,7 +62,7 @@ def insertVertex(graph, vertex):
         graph: El grafo sobre el que se ejecuta la operacion
         vertex: El vertice que se desea insertar
     Returns:
-        Un nuevo grafo
+        El grafo graph con el nuevo vertice
     Raises:
         Exception
     """
@@ -71,7 +77,7 @@ def removeVertex(graph, vertex):
         graph: El grafo sobre el que se ejecuta la operacion
         vertex: El vertice que se desea remover
     Returns:
-        Un nuevo grafo
+        El grafo sin el vertice vertex
     Raises:
         Exception
     """
@@ -80,13 +86,13 @@ def removeVertex(graph, vertex):
 
 def numVertex(graph):
     """
-    Retorna el numero de vertices en el  grafo graph
+    Retorna el numero de vertices del  grafo graph
 
     Args:
         graph: El grafo sobre el que se ejecuta la operacion
 
     Returns:
-        El numero de vertices
+        El numero de vertices del grafo
     Raises:
         Exception
     """
@@ -95,13 +101,13 @@ def numVertex(graph):
 
 def numEdges(graph):
     """
-    Retorna el numero de arcos en el  grafo graph
+    Retorna el numero de arcos en el grafo graph
 
     Args:
         graph: El grafo sobre el que se ejecuta la operacion
 
     Returns:
-        El numero de vertices
+        El numero de vertices del grafo
     Raises:
         Exception
     """
@@ -115,7 +121,7 @@ def vertices(graph):
         graph: El grafo sobre el que se ejecuta la operacion
 
     Returns:
-        El numero de vertices
+        La lista con los vertices del grafo
     Raises:
         Exception
     """
@@ -130,7 +136,7 @@ def edges(graph):
         graph: El grafo sobre el que se ejecuta la operacion
 
     Returns:
-        Una lista con los arcos
+        Una lista con los arcos del grafo
     Raises:
         Exception
     """
@@ -195,7 +201,7 @@ def getEdge(graph, vertexa, vertexb):
         vertexb: Vertice destino
 
     Returns:
-        El grado el arco
+        El arco que une los verices vertexa y vertexb
     Raises:
         Exception
     """
@@ -216,7 +222,7 @@ def addEdge(graph, vertexa, vertexb, weight=0):
         wight: peso del arco
 
     Returns:
-       True si el vertice esta presente
+       El grafo con el nuevo arco
     Raises:
         Exception
     """
@@ -225,11 +231,11 @@ def addEdge(graph, vertexa, vertexb, weight=0):
 
 def containsVertex(graph, vertex):
     """
-    Retorna el arco asociado a los vertices vertexa ---- vertexb
+    Retorna si el vertice vertex esta presente en el grafo
 
     Args:
         graph: El grafo sobre el que se ejecuta la operacion
-        vertexa: Vertice que se busca
+        vertex: Vertice que se busca
 
     Returns:
        True si el vertice esta presente
@@ -265,7 +271,7 @@ def adjacentEdges(graph, vertex):
         vertex: El vertice del que se quiere la lista
 
     Returns:
-        La lista de adyacencias
+        La lista de arcos adyacentes
     Raises:
         Exception
     """
