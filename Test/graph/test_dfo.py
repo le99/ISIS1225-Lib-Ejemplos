@@ -45,7 +45,7 @@ def test_dfo(graph):
 
 def compareVertices(searchname, element):
     if (searchname == element['key']):
-        return 0    
+        return 0
     elif (searchname < element['key']):
         return -1
     return 1
