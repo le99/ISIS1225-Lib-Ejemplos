@@ -35,6 +35,18 @@ assert config
 
 
 def KosarajuSCC(graph):
+    """
+    Implementa el algoritmo de Kosaraju
+    para encontrar los componentes conectados
+    de un grafo dirigido
+    Args:
+        graph: El grafo a examinar
+    Returns:
+        Una estructura con los componentes
+        conectados
+    Raises:
+        Exception
+    """
     try:
         scc = {
                 'idscc': None,
