@@ -46,7 +46,6 @@ def newIndexHeap(cmpfunction):
         indexheap = {'elements': None,
                      'qpMap': None,
                      'maxCapacity': size,
-                     'offset': 2,
                      'size': 0,
                      'cmpfunction': cmpfunction}
         indexheap['elements'] = lt.newList(datastructure='ARRAY_LIST',
@@ -74,10 +73,10 @@ def insert(iheap, key, index):
     """
     try:
         if not map.contains(iheap['qpMap'], key):
-            lt.insertElement(iheap['elements'], {'key': key, 'index': index},
-                             iheap['size'] + iheap['offset'])
-            map.put(iheap['qpMap'], key, iheap['size'] + iheap['offset'])
             iheap['size'] += 1
+            lt.insertElement(iheap['elements'], {'key': key, 'index': index},
+                             iheap['size'])
+            map.put(iheap['qpMap'], key, iheap['size'])
             swim(iheap, iheap['size'])
         return iheap
     except Exception as exp:
@@ -147,7 +146,7 @@ def min(iheap):
         Exception
     """
     try:
-        minIdx = lt.getElement(iheap['elements'], iheap['offset'])
+        minIdx = lt.getElement(iheap['elements'], 1)
         return minIdx['key']
     except Exception as exp:
         error.reraise(exp, 'indexheap:min')
@@ -165,8 +164,8 @@ def delMin(iheap):
         Exception
     """
     try:
-        minIdx = lt.getElement(iheap['elements'], iheap['offset'])
-        exchange(iheap, iheap['offset'], iheap['size']+1)
+        minIdx = lt.getElement(iheap['elements'], 1)
+        exchange(iheap, 1, iheap['size'])
         iheap['size'] -= 1
         sink(iheap, 1)
         map.remove(iheap['qpMap'], minIdx['key'])
@@ -193,7 +192,7 @@ def decreaseKey(iheap, key, newindex):
         elem = lt.getElement(iheap['elements'], val['value'])
         elem['index'] = newindex
         lt.changeInfo(iheap['elements'], val['value'], elem)
-        swim(iheap, val['value']-1)
+        swim(iheap, val['value'])
         return iheap
     except Exception as exp:
         error.reraise(exp, 'indexheap:decreaseKey')
@@ -217,7 +216,7 @@ def increaseKey(iheap, key, newindex):
         elem = lt.getElement(iheap['elements'], val['value'])
         elem['index'] = newindex
         lt.changeInfo(iheap['elements'], val['value'], elem)
-        sink(iheap, val['value']-1)
+        sink(iheap, val['value'])
         return iheap
     except Exception as exp:
         error.reraise(exp, 'indexheap:increaseKey')
@@ -270,8 +269,8 @@ def swim(iheap, pos):
     """
     try:
         while (pos > 1):
-            posparent = int((pos/2)+1)
-            poselement = int(pos+1)
+            posparent = int((pos/2))
+            poselement = int(pos)
             parent = lt.getElement(iheap['elements'], posparent)
             element = lt.getElement(iheap['elements'], poselement)
             if greater(iheap, parent, element):
@@ -299,13 +298,13 @@ def sink(iheap, pos):
         while ((2*pos <= size)):
             j = 2*pos
             if (j < size):
-                if greater(iheap, lt.getElement(iheap['elements'], j+1),
-                           lt.getElement(iheap['elements'], (j+1)+1)):
+                if greater(iheap, lt.getElement(iheap['elements'], j),
+                           lt.getElement(iheap['elements'], (j+1))):
                     j += 1
-            if (not greater(iheap, lt.getElement(iheap['elements'], pos+1),
-                            lt.getElement(iheap['elements'], j+1))):
+            if (not greater(iheap, lt.getElement(iheap['elements'], pos),
+                            lt.getElement(iheap['elements'], j))):
                 break
-            exchange(iheap, pos+1, j+1)
+            exchange(iheap, pos, j)
             pos = j
     except Exception as exp:
         error.reraise(exp, 'indexheap:sink')
