@@ -54,13 +54,11 @@ def newHeap(cmpfunction):
     try:
         heap = {'elements': None,
                 'size': 0,
-                'offset': 2,
                 'cmpfunction': cmpfunction
                 }
 
         heap['elements'] = lt.newList(datastructure='ARRAY_LIST',
                                       cmpfunction=cmpfunction)
-        lt.addLast(heap['elements'], None)
         return heap
     except Exception as exp:
         error.reraise(exp, 'newHeap')
@@ -113,7 +111,7 @@ def min(heap):
     """
     try:
         if (heap['size'] > 0):
-            return lt.getElement(heap['elements'], heap['offset'])
+            return lt.getElement(heap['elements'], 1)
         return None
     except Exception as exp:
         error.reraise(exp, 'heap:min')
@@ -133,9 +131,8 @@ def insert(heap, element):
         Exception
     """
     try:
-        lt.insertElement(heap['elements'], element,
-                         heap['size']+heap['offset'])
         heap['size'] += 1
+        lt.insertElement(heap['elements'], element, heap['size'])
         swim(heap, heap['size'])
         return heap
     except Exception as exp:
@@ -157,10 +154,10 @@ def delMin(heap):
     """
     try:
         if (heap['size'] > 0):
-            min = lt.getElement(heap['elements'], heap['offset'])
-            last = lt.getElement(heap['elements'], heap['size']+1)
-            lt.changeInfo(heap['elements'], heap['offset'], last)
-            lt.changeInfo(heap['elements'], heap['size']+1, None)
+            min = lt.getElement(heap['elements'], 1)
+            last = lt.getElement(heap['elements'], heap['size'])
+            lt.changeInfo(heap['elements'], 1, last)
+            lt.changeInfo(heap['elements'], heap['size'], None)
             heap['size'] -= 1
             sink(heap, 1)
             return min
@@ -190,10 +187,10 @@ def swim(heap, pos):
     """
     try:
         while (pos > 1):
-            parent = lt.getElement(heap['elements'], int((pos/2)+1))
-            element = lt.getElement(heap['elements'], int(pos+1))
+            parent = lt.getElement(heap['elements'], int((pos/2)))
+            element = lt.getElement(heap['elements'], int(pos))
             if greater(heap, parent, element):
-                exchange(heap, pos+1, int(pos/2 + 1))
+                exchange(heap, pos, int(pos/2))
             pos = pos//2
     except Exception as exp:
         error.reraise(exp, 'heap:swim')
@@ -217,13 +214,13 @@ def sink(heap, pos):
         while ((2*pos <= size)):
             j = 2*pos
             if (j < size):
-                if greater(heap, lt.getElement(heap['elements'], j+1),
-                           lt.getElement(heap['elements'], (j+1)+1)):
+                if greater(heap, lt.getElement(heap['elements'], j),
+                           lt.getElement(heap['elements'], (j+1))):
                     j += 1
-            if (not greater(heap, lt.getElement(heap['elements'], pos+1),
-                            lt.getElement(heap['elements'], j+1))):
+            if (not greater(heap, lt.getElement(heap['elements'], pos),
+                            lt.getElement(heap['elements'], j))):
                 break
-            exchange(heap, pos+1, j+1)
+            exchange(heap, pos, j)
             pos = j
     except Exception as exp:
         error.reraise(exp, 'heap:sink')

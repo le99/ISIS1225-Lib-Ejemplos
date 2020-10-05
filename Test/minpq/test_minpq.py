@@ -56,3 +56,9 @@ def test_delete(minpq):
     minpq = pq.insert(minpq, 2)
     key = pq.min(minpq)
     assert key == 2
+    key = pq.delMin(minpq)
+    assert key == 2
+    key = pq.delMin(minpq)
+    assert key == 3
+    key = pq.delMin(minpq)
+    assert key == 4
