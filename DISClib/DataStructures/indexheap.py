@@ -30,7 +30,7 @@ orientada a menor
 """
 
 
-def newIndexHeap(size, cmpfunction):
+def newIndexHeap(cmpfunction):
     """
     Crea un cola de prioridad indexada orientada a menor
 
@@ -52,9 +52,10 @@ def newIndexHeap(size, cmpfunction):
         indexheap['elements'] = lt.newList(datastructure='ARRAY_LIST',
                                            cmpfunction=cmpfunction)
         lt.addLast(indexheap['elements'], None)
-        indexheap['qpMap'] = map.newMap(numelements=size,
+        indexheap['qpMap'] = map.newMap(
                                         maptype='PROBING',
-                                        comparefunction=cmpfunction)
+                                        comparefunction=cmpfunction
+                                        )
         return indexheap
     except Exception as exp:
         error.reraise(exp, 'indexheap:newindexheap')

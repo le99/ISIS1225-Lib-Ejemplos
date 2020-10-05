@@ -39,7 +39,7 @@ Algorithms, 4th Edition
 """
 
 
-def newMinPQ(size, cmpfunction):
+def newMinPQ(cmpfunction):
     """
     Crea un cola de prioridad orientada a menor
 
@@ -53,7 +53,7 @@ def newMinPQ(size, cmpfunction):
     """
     try:
         pq = {'heap': None}
-        pq['heap'] = h.newHeap(size, cmpfunction)
+        pq['heap'] = h.newHeap(cmpfunction)
         return pq
 
     except Exception as exp:

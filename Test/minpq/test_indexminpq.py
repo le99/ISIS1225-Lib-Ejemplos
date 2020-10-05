@@ -15,7 +15,7 @@ def greater(key1, entry):
 
 @pytest.fixture
 def iminpq():
-    iminpq = pq.newIndexMinPQ(10, greater)
+    iminpq = pq.newIndexMinPQ(greater)
     iminpq = pq.insert(iminpq, 'A', 23)
     iminpq = pq.insert(iminpq, 'B', 7)
     iminpq = pq.insert(iminpq, 'C', 30)

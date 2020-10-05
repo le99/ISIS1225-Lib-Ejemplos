@@ -208,8 +208,9 @@ def initSearch(graph, source):
                 source,
                 {'marked': True, 'edgeTo': None, 'distTo': 0}
                 )
-        pq = iminpq.newIndexMinPQ(g.numVertex(graph),
-                                  cmpfunction=graph['comparefunction'])
+        pq = iminpq.newIndexMinPQ(
+                                  cmpfunction=graph['comparefunction']
+                                  )
         search['iminpq'] = pq
         iminpq.insert(search['iminpq'], source, 0)
         return search

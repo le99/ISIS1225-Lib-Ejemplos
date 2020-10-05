@@ -38,7 +38,7 @@ Algorithms, 4th Edition
 """
 
 
-def newHeap(size, cmpfunction):
+def newHeap(cmpfunction):
     """
     Crea un nuevo heap basado en un arreglo, cuyo primer elemento
     es inicializado en None y no será utilizado

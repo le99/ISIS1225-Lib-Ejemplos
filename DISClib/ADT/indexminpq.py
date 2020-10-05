@@ -37,19 +37,18 @@ Algorithms, 4th Edition
 """
 
 
-def newIndexMinPQ(capacity, cmpfunction):
+def newIndexMinPQ(cmpfunction):
     """
     Crea un cola de prioridad indexada orientada a menor
 
     Args:
         cmpfunction: La funcion de comparacion
-        size: El numero de elementos
     Returns:
        Una nueva cola de prioridad indexada
     Raises:
         Exception
     """
-    return h.newIndexHeap(capacity, cmpfunction)
+    return h.newIndexHeap(cmpfunction)
 
 
 def isEmpty(iminpq):

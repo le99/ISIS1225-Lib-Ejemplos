@@ -15,7 +15,7 @@ def greater(key1, key2):
 
 @pytest.fixture
 def minpq():
-    minpq = pq.newMinPQ(10, greater)
+    minpq = pq.newMinPQ(greater)
     return minpq
 
 
