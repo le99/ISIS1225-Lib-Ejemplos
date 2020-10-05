@@ -36,7 +36,7 @@ def graph():
     return graph
 
 
-def test_dijkstra(graph):
+def test_dijkstra_bogota(graph):
     search = djk.Dijkstra(graph, 'Bogota')
     assert djk.hasPathTo(search, 'Cali') is True
     path = djk.pathTo(search, 'Cali')
@@ -48,6 +48,39 @@ def test_dijkstra(graph):
               " costo: " +
               str(edge['weight']))
     print(str(djk.distTo(search, 'Cali')))
+
+
+def test_dijkstra_cali(graph):
+    search = djk.Dijkstra(graph, 'Cali')
+    assert djk.hasPathTo(search, 'Bogota') is False
+
+
+def test_dijkstra_honda(graph):
+    search = djk.Dijkstra(graph, 'Honda')
+    assert djk.hasPathTo(search, 'Cali') is True
+    path = djk.pathTo(search, 'Cali')
+    print('\n')
+    while not stack.isEmpty(path):
+        edge = stack.pop(path)
+        print(edge['vertexA'] + "-->" +
+              edge['vertexB'] +
+              " costo: " +
+              str(edge['weight']))
+    print(str(djk.distTo(search, 'Cali')))
+
+
+def test_dijkstra_armenia(graph):
+    search = djk.Dijkstra(graph, 'Bogota')
+    assert djk.hasPathTo(search, 'Armenia') is True
+    path = djk.pathTo(search, 'Armenia')
+    print('\n')
+    while not stack.isEmpty(path):
+        edge = stack.pop(path)
+        print(edge['vertexA'] + "-->" +
+              edge['vertexB'] +
+              " costo: " +
+              str(edge['weight']))
+    print(str(djk.distTo(search, 'Armenia')))
 
 
 def comparekeys(key, element):
