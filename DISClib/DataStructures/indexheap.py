@@ -131,7 +131,7 @@ def contains(iheap, key):
     try:
         return map.contains(iheap['qpMap'], key)
     except Exception as exp:
-        error.reraise(exp, 'indexheap:size')
+        error.reraise(exp, 'indexheap:contains')
 
 
 def min(iheap):
@@ -149,7 +149,7 @@ def min(iheap):
         minIdx = lt.getElement(iheap['elements'], iheap['offset'])
         return minIdx['key']
     except Exception as exp:
-        error.reraise(exp, 'indexheap:size')
+        error.reraise(exp, 'indexheap:min')
 
 
 def delMin(iheap):
@@ -165,15 +165,13 @@ def delMin(iheap):
     """
     try:
         minIdx = lt.getElement(iheap['elements'], iheap['offset'])
-        last = lt.getElement(iheap['elements'], iheap['size']+1)
-        lt.changeInfo(iheap['elements'], iheap['offset'], last)
-        lt.changeInfo(iheap['elements'], iheap['size']+1, None)
+        exchange(iheap, iheap['offset'], iheap['size']+1)
         iheap['size'] -= 1
         sink(iheap, 1)
         map.remove(iheap['qpMap'], minIdx['key'])
         return minIdx['key']
     except Exception as exp:
-        error.reraise(exp, 'indexheap:size')
+        error.reraise(exp, 'indexheap:delMin')
 
 
 def decreaseKey(iheap, key, newindex):
@@ -197,7 +195,7 @@ def decreaseKey(iheap, key, newindex):
         swim(iheap, val['value']-1)
         return iheap
     except Exception as exp:
-        error.reraise(exp, 'heap:exchange')
+        error.reraise(exp, 'indexheap:decreaseKey')
 
 
 def increaseKey(iheap, key, newindex):
@@ -221,7 +219,7 @@ def increaseKey(iheap, key, newindex):
         sink(iheap, val['value']-1)
         return iheap
     except Exception as exp:
-        error.reraise(exp, 'heap:exchange')
+        error.reraise(exp, 'indexheap:increaseKey')
 
 
 #  ---------------------------------------------------------
@@ -241,7 +239,7 @@ def exchange(iheap, i, j):
         lt.changeInfo(iheap['elements'], j, element_i)
         map.put(iheap['qpMap'], element_j['key'], i)
     except Exception as exp:
-        error.reraise(exp, 'heap:exchange')
+        error.reraise(exp, 'indexheap:exchange')
 
 
 def greater(iheap, parent, element):
@@ -252,7 +250,7 @@ def greater(iheap, parent, element):
     try:
         return parent['index'] > element['index']
     except Exception as exp:
-        error.reraise(exp, 'heap:greater')
+        error.reraise(exp, 'indexheap:greater')
 
 
 def swim(iheap, pos):
@@ -279,7 +277,7 @@ def swim(iheap, pos):
                 exchange(iheap, posparent, poselement)
             pos = (pos//2)
     except Exception as exp:
-        error.reraise(exp, 'heap:swim')
+        error.reraise(exp, 'indexheap:swim')
 
 
 def sink(iheap, pos):
@@ -309,4 +307,4 @@ def sink(iheap, pos):
             exchange(iheap, pos+1, j+1)
             pos = j
     except Exception as exp:
-        error.reraise(exp, 'iheap:sink')
+        error.reraise(exp, 'indexheap:sink')

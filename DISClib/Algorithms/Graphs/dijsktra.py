@@ -208,13 +208,10 @@ def initSearch(graph, source):
                 source,
                 {'marked': True, 'edgeTo': None, 'distTo': 0}
                 )
-        pq = iminpq.newIndexMinPQ(g.numVertex(graph), comparenames)
+        pq = iminpq.newIndexMinPQ(g.numVertex(graph),
+                                  cmpfunction=graph['comparefunction'])
         search['iminpq'] = pq
         iminpq.insert(search['iminpq'], source, 0)
         return search
     except Exception as exp:
         error.reraise(exp, 'dks:init')
-
-
-def comparenames(searchname, element):
-    return (searchname == element['key'])

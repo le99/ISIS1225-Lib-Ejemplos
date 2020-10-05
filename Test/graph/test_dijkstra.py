@@ -40,7 +40,7 @@ def test_dijkstra(graph):
     search = djk.Dijkstra(graph, 'Bogota')
     assert djk.hasPathTo(search, 'Cali') is True
     path = djk.pathTo(search, 'Cali')
-    print('')
+    print('\n')
     while not stack.isEmpty(path):
         edge = stack.pop(path)
         print(edge['vertexA'] + "-->" +
