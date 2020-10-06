@@ -45,12 +45,10 @@ def newIndexHeap(cmpfunction):
     try:
         indexheap = {'elements': None,
                      'qpMap': None,
-                     'maxCapacity': size,
                      'size': 0,
                      'cmpfunction': cmpfunction}
         indexheap['elements'] = lt.newList(datastructure='ARRAY_LIST',
                                            cmpfunction=cmpfunction)
-        lt.addLast(indexheap['elements'], None)
         indexheap['qpMap'] = map.newMap(
                                         maptype='PROBING',
                                         comparefunction=cmpfunction
@@ -136,7 +134,7 @@ def contains(iheap, key):
 
 def min(iheap):
     """
-    Retorna la llave de mayor prioridad
+    Retorna el primer elemento del heap, es decir el menor elemento
 
     Args:
         iheap: El heap a revisar
@@ -146,15 +144,18 @@ def min(iheap):
         Exception
     """
     try:
-        minIdx = lt.getElement(iheap['elements'], 1)
-        return minIdx['key']
+        if(iheap['size'] > 0):
+            minIdx = lt.getElement(iheap['elements'], 1)
+            return minIdx['key']
+        return None
     except Exception as exp:
         error.reraise(exp, 'indexheap:min')
 
 
 def delMin(iheap):
     """
-    Elimina el elemento de mayor prioridad
+    Retorna el menor elemento del heap y lo elimina.
+    Se reemplaza con el último elemento y se hace sink.
 
     Args:
         iheap: El heap a revisar
@@ -164,12 +165,14 @@ def delMin(iheap):
         Exception
     """
     try:
-        minIdx = lt.getElement(iheap['elements'], 1)
-        exchange(iheap, 1, iheap['size'])
-        iheap['size'] -= 1
-        sink(iheap, 1)
-        map.remove(iheap['qpMap'], minIdx['key'])
-        return minIdx['key']
+        if (iheap['size'] > 0):
+            minIdx = lt.getElement(iheap['elements'], 1)
+            exchange(iheap, 1, iheap['size'])
+            iheap['size'] -= 1
+            sink(iheap, 1)
+            map.remove(iheap['qpMap'], minIdx['key'])
+            return minIdx['key']
+        return None
     except Exception as exp:
         error.reraise(exp, 'indexheap:delMin')
 
