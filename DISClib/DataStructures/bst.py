@@ -178,8 +178,8 @@ def keySet(bst):
         Exception
     """
     try:
-        klist = lt.newList()
-        klist = keySetTree(bst, klist)
+        klist = lt.newList('SINGLELINKED', bst['cmpfunction'])
+        klist = keySetTree(bst['root'], klist)
         return klist
     except Exception as exp:
         error.reraise(exp, 'BST:KeySet')
@@ -196,8 +196,8 @@ def valueSet(bst):
         Exception
     """
     try:
-        vlist = lt.newList()
-        vlist = valueSetTree(bst, vlist)
+        vlist = lt.newList('SINGLELINKED', bst['cmpfunction'])
+        vlist = valueSetTree(bst['root'], vlist)
         return vlist
     except Exception as exp:
         error.reraise(exp, 'BST:valueSet')

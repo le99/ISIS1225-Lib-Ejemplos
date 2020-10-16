@@ -233,3 +233,49 @@ def test_values(tree):
     assert bst.size(tree) == 16
     lst = bst.values(tree, 10, 40)
     assert lt.size(lst) == 11
+
+
+def test_keySet(tree):
+    tree = bst.put(tree, 23, 'book21')
+    tree = bst.put(tree, 7, 'book7')
+    tree = bst.put(tree, 30, 'book30')
+    tree = bst.put(tree, 5, 'book5')
+    tree = bst.put(tree, 4, 'book4')
+    tree = bst.put(tree, 3, 'book3')
+    tree = bst.put(tree, 20, 'book20')
+    tree = bst.put(tree, 25, 'book25')
+    tree = bst.put(tree, 35, 'book35')
+    tree = bst.put(tree, 29, 'book29')
+    tree = bst.put(tree, 11, 'book11')
+    tree = bst.put(tree, 15, 'book15')
+    tree = bst.put(tree, 10, 'book10')
+    tree = bst.put(tree, 37, 'book11')
+    tree = bst.put(tree, 40, 'book15')
+    tree = bst.put(tree, 45, 'book10')
+    assert bst.size(tree) == 16
+    lst = bst.keySet(tree)
+    assert lt.size(lst) == 16
+    assert lt.isPresent(lst, 11) > 0
+
+
+def test_valueSet(tree):
+    tree = bst.put(tree, 23, 'book21')
+    tree = bst.put(tree, 7, 'book7')
+    tree = bst.put(tree, 30, 'book30')
+    tree = bst.put(tree, 5, 'book5')
+    tree = bst.put(tree, 4, 'book4')
+    tree = bst.put(tree, 3, 'book3')
+    tree = bst.put(tree, 20, 'book20')
+    tree = bst.put(tree, 25, 'book25')
+    tree = bst.put(tree, 35, 'book35')
+    tree = bst.put(tree, 29, 'book29')
+    tree = bst.put(tree, 11, 'book11')
+    tree = bst.put(tree, 15, 'book15')
+    tree = bst.put(tree, 10, 'book10')
+    tree = bst.put(tree, 37, 'book11')
+    tree = bst.put(tree, 40, 'book15')
+    tree = bst.put(tree, 45, 'book10')
+    assert bst.size(tree) == 16
+    lst = bst.valueSet(tree)
+    assert lt.size(lst) == 16
+    assert lt.isPresent(lst, 'book20') > 0

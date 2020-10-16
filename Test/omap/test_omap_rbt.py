@@ -303,3 +303,49 @@ def test_traversal(tree):
     assert lt.size(lstin) == 16
     assert lt.size(lstpre) == 16
     assert lt.size(lstpost) == 16
+
+
+def test_keySet(tree):
+    tree = om.put(tree, 23, 'book21')
+    tree = om.put(tree, 7, 'book7')
+    tree = om.put(tree, 30, 'book30')
+    tree = om.put(tree, 5, 'book5')
+    tree = om.put(tree, 4, 'book4')
+    tree = om.put(tree, 3, 'book3')
+    tree = om.put(tree, 20, 'book20')
+    tree = om.put(tree, 25, 'book25')
+    tree = om.put(tree, 35, 'book35')
+    tree = om.put(tree, 29, 'book29')
+    tree = om.put(tree, 11, 'book11')
+    tree = om.put(tree, 15, 'book15')
+    tree = om.put(tree, 10, 'book10')
+    tree = om.put(tree, 37, 'book11')
+    tree = om.put(tree, 40, 'book15')
+    tree = om.put(tree, 45, 'book10')
+    assert om.size(tree) == 16
+    lst = om.keySet(tree)
+    assert lt.size(lst) == 16
+    assert lt.isPresent(lst, 11) > 0
+
+
+def test_valueSet(tree):
+    tree = om.put(tree, 23, 'book21')
+    tree = om.put(tree, 7, 'book7')
+    tree = om.put(tree, 30, 'book30')
+    tree = om.put(tree, 5, 'book5')
+    tree = om.put(tree, 4, 'book4')
+    tree = om.put(tree, 3, 'book3')
+    tree = om.put(tree, 20, 'book20')
+    tree = om.put(tree, 25, 'book25')
+    tree = om.put(tree, 35, 'book35')
+    tree = om.put(tree, 29, 'book29')
+    tree = om.put(tree, 11, 'book11')
+    tree = om.put(tree, 15, 'book15')
+    tree = om.put(tree, 10, 'book10')
+    tree = om.put(tree, 37, 'book11')
+    tree = om.put(tree, 40, 'book15')
+    tree = om.put(tree, 45, 'book10')
+    assert om.size(tree) == 16
+    lst = om.valueSet(tree)
+    assert lt.size(lst) == 16
+    assert lt.isPresent(lst, 'book20') > 0

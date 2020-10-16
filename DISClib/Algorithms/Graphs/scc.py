@@ -121,7 +121,7 @@ def stronglyConnected(scc, verta, vertb):
 
 def connectedComponents(scc):
     """
-    Dados dos vértices, informa si están fuertemente conectados o no.
+    Retorna el numero de componentes conectados
     """
     try:
         return scc['components']

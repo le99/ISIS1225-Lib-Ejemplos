@@ -194,8 +194,8 @@ def keySet(rbt):
         Exception
     """
     try:
-        klist = lt.newList()
-        klist = keySetTree(rbt, klist)
+        klist = lt.newList('SINGLELINKED', rbt['cmpfunction'])
+        klist = keySetTree(rbt['root'], klist)
         return klist
     except Exception as exp:
         error.reraise(exp, 'RBT:KeySet')
@@ -212,8 +212,8 @@ def valueSet(rbt):
         Exception
     """
     try:
-        vlist = lt.newList()
-        vlist = valueSetTree(rbt, vlist)
+        vlist = lt.newList('SINGLELINKED', rbt['cmpfunction'])
+        vlist = valueSetTree(rbt['root'], vlist)
         return vlist
     except Exception as exp:
         error.reraise(exp, 'RBT:valueSet')
