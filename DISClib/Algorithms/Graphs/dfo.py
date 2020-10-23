@@ -45,7 +45,7 @@ def DepthFirstOrder(graph):
         search['pre'] = queue.newQueue()
         search['post'] = queue.newQueue()
         search['reversepost'] = stack.newStack()
-        search['marked'] = map.newMap(numelements=g.numVertex(graph),
+        search['marked'] = map.newMap(numelements=g.numVertices(graph),
                                       maptype='PROBING',
                                       comparefunction=graph['comparefunction']
                                       )

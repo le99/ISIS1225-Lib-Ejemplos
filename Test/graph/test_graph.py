@@ -33,7 +33,7 @@ def test_insertVertex(graph):
     g.insertVertex(graph, 'Pasto')
     g.insertVertex(graph, 'Barranquilla')
     g.insertVertex(graph, 'Manizales')
-    assert g.numVertex(graph) == 7
+    assert g.numVertices(graph) == 7
 
 
 def test_insertEdges(graph):
@@ -54,7 +54,7 @@ def test_insertEdges(graph):
     g.addEdge(graph, 'Cali', 'Barranquilla')
     g.addEdge(graph, 'Barranquilla', 'Manizales')
     g.addEdge(graph, 'Pasto', 'Manizales')
-    assert g.numVertex(graph) == 7
+    assert g.numVertices(graph) == 7
     assert g.numEdges(graph) == 10
 
 

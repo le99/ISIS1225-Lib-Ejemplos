@@ -111,7 +111,7 @@ def removeVertex(graph, vertex):
     pass
 
 
-def numVertex(graph):
+def numVertices(graph):
     """
     Retorna el numero de vertices del  grafo graph
 

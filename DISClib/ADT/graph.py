@@ -84,7 +84,7 @@ def removeVertex(graph, vertex):
     return gr.removeVertex(graph, vertex)
 
 
-def numVertex(graph):
+def numVertices(graph):
     """
     Retorna el numero de vertices del  grafo graph
 
@@ -96,7 +96,7 @@ def numVertex(graph):
     Raises:
         Exception
     """
-    return gr.numVertex(graph)
+    return gr.numVertices(graph)
 
 
 def numEdges(graph):

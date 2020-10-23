@@ -47,7 +47,7 @@ def test_edgeMethods(graph):
 
 
 def test_insertEdges(graph):
-    assert g.numVertex(graph) == 7
+    assert g.numVertices(graph) == 7
     assert g.numEdges(graph) == 10
 
 

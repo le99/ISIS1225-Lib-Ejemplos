@@ -55,15 +55,15 @@ def KosarajuSCC(graph):
                 'components': 0
             }
 
-        scc['idscc'] = map.newMap(g.numVertex(graph),
+        scc['idscc'] = map.newMap(g.numVertices(graph),
                                   maptype='PROBING',
                                   comparefunction=graph['comparefunction']
                                   )
 
-        scc['marked'] = map.newMap(g.numVertex(graph), maptype='PROBING',
+        scc['marked'] = map.newMap(g.numVertices(graph), maptype='PROBING',
                                    comparefunction=graph['comparefunction']
                                    )
-        scc['grmarked'] = map.newMap(g.numVertex(graph), maptype='PROBING',
+        scc['grmarked'] = map.newMap(g.numVertices(graph), maptype='PROBING',
                                      comparefunction=graph['comparefunction']
                                      )
 
@@ -75,12 +75,12 @@ def KosarajuSCC(graph):
         grevrevpost = dforeverse['reversepost']
 
         # Se recorre el grafo en el orden dado por reversepost (G-reverso)
-        scc['components'] = 1
+        scc['components'] = 0
         while (not stack.isEmpty(grevrevpost)):
             vert = stack.pop(grevrevpost)
             if not map.contains(scc['marked'], vert):
-                sccCount(graph, scc, vert)
                 scc['components'] += 1
+                sccCount(graph, scc, vert)
         return scc
     except Exception as exp:
         error.reraise(exp, 'scc:Kosaraju')
@@ -138,7 +138,7 @@ def reverseGraph(graph):
         Retornar el reverso del grafo graph
     """
     try:
-        greverse = g.newGraph(size=g.numVertex(graph),
+        greverse = g.newGraph(size=g.numVertices(graph),
                               directed=True,
                               comparefunction=graph['comparefunction']
                               )

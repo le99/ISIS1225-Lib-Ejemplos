@@ -42,7 +42,7 @@ def graph():
 
 def test_scc(graph):
     sc = scc.KosarajuSCC(graph)
-    assert scc.connectedComponents(sc) == 4
+    assert scc.connectedComponents(sc) == 3
     assert scc.stronglyConnected(sc, 'Pedro', 'Carol') is True
     assert scc.stronglyConnected(sc, 'Pedro', 'Luz') is False
 
