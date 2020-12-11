@@ -36,7 +36,7 @@ assert config
 """
 
 
-def newList(datastructure='SINGLE_LINKED', cmpfunction=None):
+def newList(datastructure, cmpfunction, key, filename):
     """Crea una lista vacia.
 
     Args:
@@ -48,9 +48,9 @@ def newList(datastructure='SINGLE_LINKED', cmpfunction=None):
     """
     try:
         if (datastructure == "ARRAY_LIST"):
-            lt = alt.newList(cmpfunction)
+            lt = alt.newList(cmpfunction, key, filename)
         else:
-            lt = slt.newList(cmpfunction)
+            lt = slt.newList(cmpfunction, key, filename)
         return lt
     except Exception as exp:
         error.reraise(exp, 'list->newList: ')
@@ -383,3 +383,20 @@ def subList(lst, pos, numelem):
             return slt.subList(lst, pos, numelem)
     except Exception as exp:
         error.reraise(exp, 'List->subList: ')
+
+
+def iterator(lst):
+    """ Retorna un iterador para la lista.
+    Args:
+        lst: La lista a iterar
+
+    Raises:
+        Exception
+    """
+    try:
+        if (lst['type'] == 'ARRAY_LIST'):
+            return alt.iterator(lst)
+        else:
+            return slt.iterator(lst)
+    except Exception as exp:
+        error.reraise(exp, 'List->Iterator: ')

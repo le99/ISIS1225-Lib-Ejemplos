@@ -37,7 +37,10 @@ assert config
 """
 
 
-def newList(datastructure='SINGLE_LINKED', cmpfunction=None):
+def newList(datastructure='SINGLE_LINKED',
+            cmpfunction=None,
+            key=None,
+            filename=None):
     """Crea una lista vacia
 
     Args:
@@ -48,7 +51,7 @@ def newList(datastructure='SINGLE_LINKED', cmpfunction=None):
         Exception
     """
     try:
-        lst = lt.newList(datastructure, cmpfunction)
+        lst = lt.newList(datastructure, cmpfunction, key, filename)
         return lst
     except Exception as exp:
         error.reraise(exp, 'TADList->newList: ')
@@ -341,3 +344,17 @@ def subList(lst, pos, numelem):
         return lt.subList(lst, pos, numelem)
     except Exception as exp:
         error.reraise(exp, 'List->subList: ')
+
+
+def iterator(lst):
+    """ Retorna un iterador para la lista.
+    Args:
+        lst: La lista a iterar
+
+    Raises:
+        Exception
+    """
+    try:
+        return lt.iterator(lst)
+    except Exception as exp:
+        error.reraise(exp, 'List->Iterator: ')

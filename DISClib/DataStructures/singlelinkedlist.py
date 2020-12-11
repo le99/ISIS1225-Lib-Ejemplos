@@ -26,6 +26,7 @@
 import config
 from DISClib.DataStructures import listnode as node
 from DISClib.Utils import error as error
+import csv
 assert config
 
 """
@@ -39,7 +40,7 @@ assert config
 """
 
 
-def newList(cmpfunction=None):
+def newList(cmpfunction, key, filename):
     """Crea una lista vacia.
 
     Se inicializan los apuntadores a la primera y ultima posicion en None.
@@ -53,12 +54,22 @@ def newList(cmpfunction=None):
     Raises:
 
     """
-    new_list = {'first': None,
-                'last': None,
-                'size': 0,
-                'type': 'SINGLE_LINKED',
-                'cmpfunction': cmpfunction}
-    return new_list
+    newlist = {'first': None,
+               'last': None,
+               'size': 0,
+               'key': key,
+               'type': 'SINGLE_LINKED'}
+
+    if(cmpfunction is None):
+        newlist['cmpfunction'] = defaultfunction
+    else:
+        newlist['cmpfunction'] = cmpfunction
+
+    if (filename is not None):
+        input_file = csv.DictReader(open(filename))
+        for line in input_file:
+            addLast(newlist, line)
+    return newlist
 
 
 def addFirst(lst, element):
@@ -356,7 +367,8 @@ def isPresent(lst, element):
             node = lst['first']
             keyexist = False
             for keypos in range(1, size+1):
-                if (lst['cmpfunction'](element, node['info']) == 0):
+                if (lst['cmpfunction'](element[lst['key']],
+                                       node['info'][lst['key']]) == 0):
                     keyexist = True
                     break
                 node = node['next']
@@ -433,6 +445,7 @@ def subList(lst, pos, numelem):
                   'last': None,
                   'size': 0,
                   'type': 'SINGLE_LINKED',
+                  'key': lst['key'],
                   'cmpfunction': lst['cmpfunction']}
         cont = 1
         loc = pos
@@ -444,3 +457,29 @@ def subList(lst, pos, numelem):
         return sublst
     except Exception as exp:
         error.reraise(exp, 'singlelinkedlist->subList: ')
+
+
+def iterator(lst):
+    """ Retorna un iterador para la lista.
+    Args:
+        lst: La lista a iterar
+
+    Raises:
+        Exception
+    """
+    try:
+        if(lst is not None):
+            current = lst['first']
+            while current is not None:
+                yield current['info']
+                current = current['next']
+    except Exception as exp:
+        error.reraise(exp, 'singlelinkedlist->Iterator')
+
+
+def defaultfunction(id1, id2):
+    if id1 > id2:
+        return 1
+    elif id1 < id2:
+        return -1
+    return 0
