@@ -44,7 +44,17 @@ def newList(datastructure='SINGLE_LINKED',
     """Crea una lista vacia
 
     Args:
-        cmpfunction: Función de comparación para los elementos de la lista
+        cmpfunction: Función de comparación para los elementos de la lista.
+        Si no se provee función de comparación se utiliza la función
+        por defecto pero se debe proveer un valor para key.
+        Si se provee una función de comparación el valor de Key debe ser None.
+
+        Key:  Identificador utilizado para comparar dos elementos de la lista
+        con la función de comaparación por defecto.
+
+        filename: Si se provee este valor, se crea una lista a partir
+        de los elementos encontrados en el archivo.
+        Se espera que sea un archivo CSV UTF8.
     Returns:
         Una nueva lista
     Raises:

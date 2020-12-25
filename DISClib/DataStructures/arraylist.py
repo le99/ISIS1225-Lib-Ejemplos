@@ -308,7 +308,7 @@ def isPresent(lst, e):
             keyexist = False
             for keypos in range(1, size+1):
                 info = lst['elements'][keypos-1]
-                if (lst['cmpfunction'](e[lst['key']], info[lst['key']]) == 0):
+                if (compareElements(lst, e, info) == 0):
                     keyexist = True
                     break
             if keyexist:
@@ -405,6 +405,27 @@ def iterator(lst):
                 yield lst['elements'][pos]
     except Exception as exp:
         error.reraise(exp, 'arraylist->Iterator')
+
+
+def compareElements(lst, element, info):
+    """ Compara dos elementos
+
+    Se utiliza la función de comparación por defecto si key es None
+    o la función provista por el usuario en caso contrario
+    Args:
+        lst: La lista con los elementos
+        element:  El elemento que se esta buscando en la lista
+        info: El elemento de la lista que se está analizando
+
+    Returns:  0 si los elementos son iguales
+
+    Raises:
+        Exception
+    """
+    if(lst['key'] is not None):
+        return lst['cmpfunction'](element[lst['key']], info[lst['key']])
+    else:
+        return lst['cmpfunction'](element, info)
 
 
 def defaultfunction(id1, id2):

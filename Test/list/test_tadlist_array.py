@@ -42,6 +42,13 @@ def alt():
 
 
 @pytest.fixture
+def altfunc():
+    lst = lt.newList(datastructure='ARRAY_LIST',
+                     cmpfunction=cmpfunction)
+    return lst
+
+
+@pytest.fixture
 def books():
     books = []
     books.append({'book_id': '1', 'book_title': 'Title 1', 'author': 'a1'})
@@ -49,6 +56,8 @@ def books():
     books.append({'book_id': '3', 'book_title': 'Title 3', 'author': 'a3'})
     books.append({'book_id': '4', 'book_title': 'Title 4', 'author': 'a4'})
     books.append({'book_id': '5', 'book_title': 'Title 5', 'author': 'a5'})
+    books.append({'book_id': '6', 'book_title': 'Title 6', 'author': 'a6'})
+    books.append({'book_id': '7', 'book_title': 'Title 7', 'author': 'a7'})
     return books
 
 
@@ -134,6 +143,19 @@ def test_isPresent_array(altbooks, books):
     book = {'book_id': '10', 'book_title': 'Title 10', 'author': 'author 10'}
     assert lt.isPresent(altbooks, books[2]) > 0
     assert lt.isPresent(altbooks, book) == 0
+
+
+def test_isPresent_func(altfunc, books):
+    lt.addLast(altfunc, books[1])
+    lt.addLast(altfunc, books[2])
+    book = {'book_id': '10', 'book_title': 'Title 10', 'author': 'author 10'}
+    lt.addLast(altfunc, books[3])
+    lt.addLast(altfunc, books[4])
+    lt.addLast(altfunc, books[5])
+    assert lt.isPresent(altfunc, books[3]) > 0
+    assert lt.isPresent(altfunc, book) == 0
+    assert lt.isPresent(altfunc, books[4]) > 0
+    assert lt.isPresent(altfunc, books[6]) == 0
 
 
 def test_deleteElement_array(altbooks, books):
