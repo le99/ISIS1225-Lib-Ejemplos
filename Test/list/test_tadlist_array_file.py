@@ -44,10 +44,11 @@ def books():
 
 @pytest.fixture
 def altbooks():
-    fname = cf.data_path + 'list-small.csv'
+    fname = cf.data_path + 'list-small2.csv'
     lst = lt.newList(datastructure='ARRAY_LIST',
                      key='book_id',
-                     filename=fname)
+                     filename=fname,
+                     delimiter=";")
     return lst
 
 

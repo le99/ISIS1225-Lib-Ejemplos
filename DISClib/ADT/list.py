@@ -40,10 +40,14 @@ assert config
 def newList(datastructure='SINGLE_LINKED',
             cmpfunction=None,
             key=None,
-            filename=None):
+            filename=None,
+            delimiter=","):
     """Crea una lista vacia
 
     Args:
+        datastructure:  Tipo de estructura de datos a utilizar para implementar
+        la lista. Los tipos posibles pueden ser: ARRAY_LIST y SINGLE_LINKED.
+
         cmpfunction: Función de comparación para los elementos de la lista.
         Si no se provee función de comparación se utiliza la función
         por defecto pero se debe proveer un valor para key.
@@ -55,13 +59,17 @@ def newList(datastructure='SINGLE_LINKED',
         filename: Si se provee este valor, se crea una lista a partir
         de los elementos encontrados en el archivo.
         Se espera que sea un archivo CSV UTF8.
+
+        delimiter: Si se pasa un archivo en el parámetro filename, se utiliza
+        este valor para separar los campos. El valor por defecto es una coma.
+
     Returns:
         Una nueva lista
     Raises:
         Exception
     """
     try:
-        lst = lt.newList(datastructure, cmpfunction, key, filename)
+        lst = lt.newList(datastructure, cmpfunction, key, filename, delimiter)
         return lst
     except Exception as exp:
         error.reraise(exp, 'TADList->newList: ')

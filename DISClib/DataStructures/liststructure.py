@@ -36,11 +36,27 @@ assert config
 """
 
 
-def newList(datastructure, cmpfunction, key, filename):
-    """Crea una lista vacia.
-
+def newList(datastructure, cmpfunction, key, filename, delimeter):
+    """
     Args:
-        cmpfunction: Función de comparación para los elementos de la lista
+        datastructure:  Tipo de estructura de datos a utilizar para implementar
+        la lista. Los tipos posibles pueden ser: ARRAY_LIST y SINGLE_LINKED.
+
+        cmpfunction: Función de comparación para los elementos de la lista.
+        Si no se provee función de comparación se utiliza la función
+        por defecto pero se debe proveer un valor para key.
+        Si se provee una función de comparación el valor de Key debe ser None.
+
+        Key:  Identificador utilizado para comparar dos elementos de la lista
+        con la función de comaparación por defecto.
+
+        filename: Si se provee este valor, se crea una lista a partir
+        de los elementos encontrados en el archivo.
+        Se espera que sea un archivo CSV UTF8.
+
+        delimiter: Si se pasa un archivo en el parámetro filename, se utiliza
+        este valor para separar los campos. El valor por defecto es una coma.
+
     Returns:
         Una nueva lista
     Raises:
@@ -48,9 +64,9 @@ def newList(datastructure, cmpfunction, key, filename):
     """
     try:
         if (datastructure == "ARRAY_LIST"):
-            lt = alt.newList(cmpfunction, key, filename)
+            lt = alt.newList(cmpfunction, key, filename, delimeter)
         else:
-            lt = slt.newList(cmpfunction, key, filename)
+            lt = slt.newList(cmpfunction, key, filename, delimeter)
         return lt
     except Exception as exp:
         error.reraise(exp, 'list->newList: ')

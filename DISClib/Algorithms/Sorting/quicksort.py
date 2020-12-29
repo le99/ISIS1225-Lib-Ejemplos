@@ -44,8 +44,8 @@ def partition(lst, lo, hi, lessequalfunction):
     """
     follower = leader = lo
     while leader < hi:
-        if (lessequalfunction(
-           (lt.getElement(lst, leader), lt.getElement(lst, hi)))):
+        if lessequalfunction(
+           lt.getElement(lst, leader), lt.getElement(lst, hi)):
             lt.exchange(lst, follower, leader)
             follower += 1
         leader += 1
@@ -53,7 +53,7 @@ def partition(lst, lo, hi, lessequalfunction):
     return follower
 
 
-def sort(lst, lo, hi, lessequalfunction):
+def quicksort(lst, lo, hi, lessequalfunction):
     """
     Se localiza el pivot, utilizando la funcion de particion.
     Luego se hace la recursión con los elementos a la izquierda del pivot
@@ -62,9 +62,10 @@ def sort(lst, lo, hi, lessequalfunction):
     if (lo >= hi):
         return
     pivot = partition(lst, lo, hi, lessequalfunction)
-    sort(lst, lo, pivot-1, lessequalfunction)
-    sort(lst, pivot+1, hi, lessequalfunction)
+    quicksort(lst, lo, pivot-1, lessequalfunction)
+    quicksort(lst, pivot+1, hi, lessequalfunction)
 
 
-def quickSort(lst, lessequalfunction):
-    sort(lst, 1, lt.size(lst), lessequalfunction)
+def sort(lst, lessequalfunction):
+    quicksort(lst, 1, lt.size(lst), lessequalfunction)
+    return lst

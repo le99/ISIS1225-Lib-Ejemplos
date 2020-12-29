@@ -41,7 +41,7 @@ assert config
 """
 
 
-def newList(cmpfunction, key, filename):
+def newList(cmpfunction, key, filename, delim):
     """Crea una lista vacia.
 
     Args:
@@ -65,10 +65,11 @@ def newList(cmpfunction, key, filename):
         newlist['cmpfunction'] = cmpfunction
 
     if (filename is not None):
-        input_file = csv.DictReader(open(filename, encoding="utf8"),
-                                    delimiter=',')
+        input_file = csv.DictReader(open(filename, encoding="utf-8"),
+                                    delimiter=delim)
         for line in input_file:
             addLast(newlist, line)
+    print(newlist)
     return (newlist)
 
 

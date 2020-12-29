@@ -40,13 +40,25 @@ assert config
 """
 
 
-def newList(cmpfunction, key, filename):
+def newList(cmpfunction, key, filename, delim):
     """Crea una lista vacia.
 
     Se inicializan los apuntadores a la primera y ultima posicion en None.
     El tipo de la listase inicializa como SINGLE_LINKED
     Args:
-        cmpfunction: Función de comparación para los elementos de la lista
+        cmpfunction: Función de comparación para los elementos de la lista.
+        Si no se provee una función de comparación, se utilizará la función
+        de comparación por defecto pero se debe suministrar un valor para key
+
+        key: Identificador que se debe utilizar para la comparación de
+        elementos de la lista
+
+        filename: Si se provee este valor, se creará una lista a partir de
+        la informacion que se encuentra en el archivo CSV
+
+        delimiter: Si se provee un archivo para crear la lista, indica el
+        delimitador a usar para separar los campos del archivo CSV
+
     Returns:
         Un diccionario que representa la estructura de datos de una lista
         encadanada vacia.
@@ -66,7 +78,8 @@ def newList(cmpfunction, key, filename):
         newlist['cmpfunction'] = cmpfunction
 
     if (filename is not None):
-        input_file = csv.DictReader(open(filename))
+        input_file = csv.DictReader(open(filename, encoding="utf-8"),
+                                    delimiter=delim)
         for line in input_file:
             addLast(newlist, line)
     return newlist

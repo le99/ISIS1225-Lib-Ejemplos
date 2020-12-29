@@ -52,10 +52,11 @@ def lstbooks(books):
 
 @pytest.fixture
 def altbooks(books):
-    fname = cf.data_path + 'list-small.csv'
+    fname = cf.data_path + 'list-small2.csv'
     lst = lt.newList(datastructure='SINGLE_LINKED',
                      key='book_id',
-                     filename=fname)
+                     filename=fname,
+                     delimiter=";")
     return lst
 
 
