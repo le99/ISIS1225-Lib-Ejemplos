@@ -65,20 +65,25 @@ def newMap(numelements, prime, loadfactor, comparefunction):
         capacity = nextPrime(numelements//loadfactor)
         scale = rd.randint(1, prime-1) + 1
         shift = rd.randint(1, prime)
-        table = lt.newList('ARRAY_LIST', comparefunction)
-        for _ in range(capacity):
-            entry = me.newMapEntry(None, None)
-            lt.addLast(table, entry)
         hashtable = {'prime': prime,
                      'capacity': capacity,
                      'scale': scale,
                      'shift': shift,
-                     'table': table,
+                     'table': None,
                      'currentfactor': 0,
                      'limitfactor': loadfactor,
-                     'comparefunction': comparefunction,
+                     'comparefunction': None,
                      'size': 0,
                      'type': 'PROBING'}
+        if(comparefunction is None):
+            hashtable['comparefunction'] = defaultcompare
+        else:
+            hashtable['comparefunction'] = comparefunction
+        hashtable['table'] = lt.newList('ARRAY_LIST',
+                                        hashtable['comparefunction'])
+        for _ in range(capacity):
+            entry = me.newMapEntry(None, None)
+            lt.addLast(hashtable['table'], entry)
         return hashtable
     except Exception as exp:
         error.reraise(exp, 'Probe:newMap')
@@ -98,7 +103,7 @@ def put(map, key, value):
         Exception
     """
     try:
-        hash = hashValue(map, key)      # Se obtiene el hascode de la llave
+        hash = hashValue(map, key)      # Se obtiene el hashcode de la llave
         entry = me.newMapEntry(key, value)
         pos = findSlot(map, key, hash, map['comparefunction'])
         lt.changeInfo(map['table'], abs(pos), entry)
@@ -404,3 +409,11 @@ def nextPrime(N):
         if(isPrime(prime) is True):
             found = True
     return int(prime)
+
+
+def defaultcompare(key, element):
+    if(key == element['key']):
+        return 0
+    elif(key > element['key']):
+        return 1
+    return -1

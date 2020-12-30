@@ -30,7 +30,7 @@ import random as rd
 import math
 import config
 from DISClib.DataStructures import mapentry as me
-from DISClib.DataStructures import liststructure as lt
+from DISClib.ADT import list as lt
 assert config
 
 """
@@ -45,7 +45,7 @@ Este código está basado en las implementaciones propuestas en:
 """
 
 
-def newMap(numelements, prime, loadfactor, cmpfunction):
+def newMap(numelements, prime, loadfactor, cmpfunc):
     """Crea una tabla de simbolos (map) sin orden
 
     Crea una tabla de hash con capacidad igual a nuelements
@@ -57,7 +57,7 @@ def newMap(numelements, prime, loadfactor, cmpfunction):
         numelements: Tamaño inicial de la tabla
         prime: Número primo utilizado en la función MAD
         loadfactor: Factor de carga inicial de la tabla
-        comparefunction: Funcion de comparación entre llaves
+        cmpfunc: Funcion de comparación entre llaves
     Returns:
         Un nuevo map
     Raises:
@@ -66,18 +66,23 @@ def newMap(numelements, prime, loadfactor, cmpfunction):
     capacity = nextPrime(numelements//loadfactor)
     scale = rd.randint(1, prime-1) + 1
     shift = rd.randint(1, prime)
-    table = lt.newList('ARRAY_LIST', cmpfunction)
-    for _ in range(capacity):
-        bucket = lt.newList('SINGLE_LINKED', cmpfunction)
-        lt.addLast(table, bucket)
     hashtable = {'prime': prime,
                  'capacity': capacity,
                  'scale': scale,
                  'shift': shift,
-                 'table': table,
+                 'table': None,
                  'size': 0,
-                 'comparefunction': cmpfunction,
                  'type': 'CHAINING'}
+    if(cmpfunc is None):
+        hashtable['comparefunction'] = defaultcompare
+    else:
+        hashtable['comparefunction'] = cmpfunc
+    hashtable['table'] = lt.newList(datastructure='ARRAY_LIST',
+                                    cmpfunction=hashtable['comparefunction'])
+    for _ in range(capacity):
+        bucket = lt.newList(datastructure='SINGLE_LINKED',
+                            cmpfunction=hashtable['comparefunction'])
+        lt.addLast(hashtable['table'], bucket)
     return hashtable
 
 
@@ -215,9 +220,10 @@ def keySet(map):
     ltset = lt.newList('SINGLE_LINKED', map['comparefunction'])
     for pos in range(lt.size(map['table'])):
         bucket = lt.getElement(map['table'], pos+1)
-        for element in range(lt.size(bucket)):
-            entry = lt.getElement(bucket, element+1)
-            lt.addLast(ltset, entry['key'])
+        if(not lt.isEmpty(bucket)):
+            for element in range(lt.size(bucket)):
+                entry = lt.getElement(bucket, element+1)
+                lt.addLast(ltset, entry['key'])
     return ltset
 
 
@@ -235,9 +241,10 @@ def valueSet(map):
     ltset = lt.newList('SINGLE_LINKED', map['comparefunction'])
     for pos in range(lt.size(map['table'])):
         bucket = lt.getElement(map['table'], pos+1)
-        for element in range(lt.size(bucket)):
-            entry = lt.getElement(bucket, element+1)
-            lt.addLast(ltset, entry['value'])
+        if (not lt.isEmpty(bucket)):
+            for element in range(lt.size(bucket)):
+                entry = lt.getElement(bucket, element+1)
+                lt.addLast(ltset, entry['value'])
     return ltset
 
 
@@ -302,3 +309,11 @@ def nextPrime(N):
         if(isPrime(prime) is True):
             found = True
     return int(prime)
+
+
+def defaultcompare(key, element):
+    if(key == element['key']):
+        return 0
+    elif(key > element['key']):
+        return 1
+    return -1

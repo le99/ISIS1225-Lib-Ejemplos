@@ -7,19 +7,10 @@ from DISClib.ADT import list as lt
 assert config
 
 
-def compare_keys(key, element):
-    if (int(key) == int(me.getKey(element))):
-        return 0
-    elif (int(key) > int(me.getKey(element))):
-        return 1
-    else:
-        return -1
-
-
 @pytest.fixture
 def map():
     capacity = 5
-    map = ht.newMap(capacity, maptype='CHAINING', comparefunction=compare_keys)
+    map = ht.newMap(numelements=capacity, maptype='CHAINING')
 
     ht.put(map, '1', 'title 1')
     ht.put(map, '2', 'title 2')
@@ -99,8 +90,12 @@ def test_getkeys(map):
     assert lt.size(ltset) == 12
     element = lt.getElement(ltset, 1)
     assert element is not None
+    for elem in lt.iterator(ltset):
+        print(elem)
 
 
 def test_getvalues(map):
     ltset = ht.valueSet(map)
     assert lt.size(ltset) == 12
+    for element in lt.iterator(ltset):
+        print(element)
