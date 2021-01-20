@@ -69,7 +69,6 @@ def newList(cmpfunction, key, filename, delim):
                                     delimiter=delim)
         for line in input_file:
             addLast(newlist, line)
-    print(newlist)
     return (newlist)
 
 
