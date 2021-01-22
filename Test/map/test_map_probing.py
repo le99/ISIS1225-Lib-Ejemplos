@@ -27,6 +27,28 @@ def map():
     return map
 
 
+@pytest.fixture
+def map2():
+    capacity = 4
+    map = ht.newMap(capacity,
+                    maptype='PROBING',
+                    loadfactor=0.5,
+                    comparefunction=cmpkeys)
+    ht.put(map, '1', 'title 1')
+    ht.put(map, '2', 'title 2')
+    ht.put(map, '3', 'title 3')
+    ht.put(map, '4', 'title 4')
+    ht.put(map, '5', 'title 5')
+    ht.put(map, '6', 'title 6')
+    ht.put(map, '7', 'title 7')
+    ht.put(map, '8', 'title 8')
+    ht.put(map, '9', 'title 9')
+    ht.put(map, '10', 'title 10')
+    ht.put(map, '11', 'title 11')
+    ht.put(map, '12', 'title 12')
+    return map
+
+
 def test_contains(map):
     assert ht.contains(map, '1') is True
     assert ht.contains(map, '15') is False
@@ -84,6 +106,39 @@ def test_remove(map):
     assert ht.size(map) == 11
 
 
+def test_remove2(map2):
+    assert ht.size(map2) == 12
+    assert ht.contains(map2, '3') is True
+    ht.remove(map2, '3')
+    assert ht.size(map2) == 11
+    assert ht.contains(map2, '3') is False
+    entry = ht.get(map2, '110')
+    assert entry is None
+    ht.put(map2, '110', 'title 110')
+    ht.put(map2, '111', 'title 111')
+    ht.put(map2, '112', 'title 112')
+    ht.put(map2, '113', 'title 113')
+    ht.put(map2, '114', 'title 114')
+    ht.put(map2, '115', 'title 115')
+    assert ht.size(map2) == 17
+    ht.put(map2, '110', 'title 110-new')
+    ht.put(map2, '111', 'title 111-new')
+    ht.put(map2, '112', 'title 112-new')
+    ht.put(map2, '113', 'title 113-new')
+    ht.put(map2, '114', 'title 114-new')
+    ht.put(map2, '115', 'title 115-new')
+    assert ht.size(map2) == 17
+    entry = ht.get(map2, '110')
+    assert me.getValue(entry) == 'title 110-new'
+    entry = ht.remove(map2, '110')
+    entry = ht.remove(map2, '111')
+    entry = ht.remove(map2, '112')
+    entry = ht.remove(map2, '113')
+    entry = ht.remove(map2, '114')
+    entry = ht.remove(map2, '115')
+    assert ht.size(map2) == 11
+
+
 def test_getkeys(map):
     ltset = ht.keySet(map)
     assert lt.size(ltset) == 12
@@ -98,3 +153,11 @@ def test_getvalues(map):
     assert lt.size(ltset) == 12
     for element in lt.iterator(ltset):
         print(element)
+
+
+def cmpkeys(key, element):
+    if (key == element['key']):
+        return 0
+    elif (key > element['key']):
+        return 1
+    return -1
