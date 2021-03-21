@@ -6,18 +6,9 @@ from DISClib.Algorithms.Trees import traversal as tv
 assert config
 
 
-def cmpfunction(key1, key2):
-    if key1 == key2:
-        return 0
-    elif key1 < key2:
-        return -1
-    else:
-        return 1
-
-
 @pytest.fixture
 def tree():
-    tree = om.newMap(omaptype='RBT', comparefunction=cmpfunction)
+    tree = om.newMap(omaptype='RBT')
     return tree
 
 

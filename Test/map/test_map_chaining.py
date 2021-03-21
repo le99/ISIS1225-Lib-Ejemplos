@@ -10,7 +10,9 @@ assert config
 @pytest.fixture
 def map():
     capacity = 5
-    map = ht.newMap(numelements=capacity, maptype='CHAINING')
+    map = ht.newMap(numelements=capacity,
+                    maptype='CHAINING',
+                    loadfactor=1.5)
 
     ht.put(map, '1', 'title 1')
     ht.put(map, '2', 'title 2')
