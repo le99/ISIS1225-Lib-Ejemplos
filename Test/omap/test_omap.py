@@ -2,6 +2,7 @@ import pytest
 import config
 from DISClib.ADT import orderedmap as om
 from DISClib.ADT import list as lt
+from DISClib.Algorithms.Trees import traversal as tr
 assert config
 
 
@@ -237,3 +238,30 @@ def test_values(tree):
     assert om.size(tree) == 16
     lst = om.values(tree, 10, 40)
     assert lt.size(lst) == 11
+
+
+def test_inorder(tree):
+    tree = om.put(tree, 2, 'book2')
+    tree = om.put(tree, 1, 'book1')
+    tree = om.put(tree, 3, 'book3')
+    lst = tr.inorder(tree)
+    for element in lt.iterator(lst):
+        print(element)
+
+
+def test_preorder(tree):
+    tree = om.put(tree, 2, 'book2')
+    tree = om.put(tree, 1, 'book1')
+    tree = om.put(tree, 3, 'book3')
+    lst = tr.preorder(tree)
+    for element in lt.iterator(lst):
+        print(element)
+
+
+def test_postorder(tree):
+    tree = om.put(tree, 2, 'book2')
+    tree = om.put(tree, 1, 'book1')
+    tree = om.put(tree, 3, 'book3')
+    lst = tr.postorder(tree)
+    for element in lt.iterator(lst):
+        print(element)

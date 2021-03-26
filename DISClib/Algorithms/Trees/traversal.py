@@ -31,22 +31,22 @@ assert config
 
 
 def inorder(omap):
+    lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
     if (omap is not None):
-        lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
         lst = inorderTree(omap['root'], lst)
     return lst
 
 
 def preorder(omap):
+    lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
     if (omap is not None):
-        lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
         lst = preorderTree(omap['root'], lst)
     return lst
 
 
 def postorder(omap):
+    lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
     if (omap is not None):
-        lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
         lst = postorderTree(omap['root'], lst)
     return lst
 
