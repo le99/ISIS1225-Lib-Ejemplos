@@ -31,6 +31,9 @@ assert config
 
 
 def inorder(omap):
+    """
+    Implementa un recorrido inorder de un arbol binario
+    """
     lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
     if (omap is not None):
         lst = inorderTree(omap['root'], lst)
@@ -38,6 +41,9 @@ def inorder(omap):
 
 
 def preorder(omap):
+    """
+    Implementa un recorrido preorder de un arbol binario
+    """
     lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
     if (omap is not None):
         lst = preorderTree(omap['root'], lst)
@@ -45,6 +51,9 @@ def preorder(omap):
 
 
 def postorder(omap):
+    """
+    Implementa un recorrido postorder de un arbol binario
+    """
     lst = lt.newList('SINGLE_LINKED', omap['cmpfunction'])
     if (omap is not None):
         lst = postorderTree(omap['root'], lst)
