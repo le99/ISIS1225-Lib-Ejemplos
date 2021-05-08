@@ -23,6 +23,7 @@
 import pytest
 import config as cf
 from DISClib.ADT import list as lt
+assert cf
 
 
 @pytest.fixture
@@ -44,7 +45,7 @@ def books():
 
 @pytest.fixture
 def altbooks():
-    fname = cf.data_path + 'list-small2.csv'
+    fname = cf.file_dir + '/Test/Data/' + 'list-small2.csv'
     lst = lt.newList(datastructure='ARRAY_LIST',
                      key='book_id',
                      filename=fname,
