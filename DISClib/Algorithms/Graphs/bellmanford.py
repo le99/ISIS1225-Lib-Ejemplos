@@ -31,7 +31,7 @@ from DISClib.ADT import list as lt
 from DISClib.ADT import queue as q
 from DISClib.ADT import map as map
 from DISClib.ADT import graph as g
-from DISClib.ADT import stack
+from DISClib.ADT import stack as st
 from DISClib.Algorithms.Graphs import cycles as c
 from DISClib.Utils import error as error
 import math
@@ -161,10 +161,10 @@ def pathTo(search, vertex):
     try:
         if hasPathTo(search, vertex) is False:
             return None
-        path = stack.newStack()
+        path = st.newStack()
         while vertex != search['source']:
             edge = map.get(search['edgeTo'], vertex)['value']
-            stack.push(path, edge)
+            st.push(path, edge)
             vertex = e.either(edge)
         return path
     except Exception as exp:
@@ -188,7 +188,7 @@ def findNegativeCycle(graph, search):
                 g.addEdge(search['spt'], e.either(edge),
                           e.other(edge), e.weight(edge))
         finder = c.DirectedCycle(search['spt'])
-        search['cycle'] = c.cycle(finder)
+        search['cycle'] = not st.isEmpty(c.cycle(finder))
         return search
     except Exception as exp:
         error.reraise(exp, 'bellman:pathto')

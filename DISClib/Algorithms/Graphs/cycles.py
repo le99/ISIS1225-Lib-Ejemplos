@@ -98,7 +98,7 @@ def hasCycle(search):
 
 
 def cycle(search):
-    return not st.isEmpty(search['cycle'])
+    return search['cycle']
 
 
 def initStructures(graph):
