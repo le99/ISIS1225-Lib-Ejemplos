@@ -25,11 +25,11 @@
  """
 
 import config
+from DISClib.ADT import list as lt
 from DISClib.ADT import graph as g
 from DISClib.ADT import stack
 from DISClib.Algorithms.Graphs import dfo
 from DISClib.Utils import error as error
-from DISClib.ADT import list as lt
 from DISClib.ADT import map
 assert config
 

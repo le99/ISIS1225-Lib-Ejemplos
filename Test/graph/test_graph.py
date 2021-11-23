@@ -21,7 +21,7 @@ def digraph():
 def test_edgeMethods(graph):
     edge = e.newEdge('Bogota', 'Cali')
     assert 'Bogota' == e.either(edge)
-    assert 'Cali' == e.other(edge, e.either(edge))
+    assert 'Cali' == e.other(edge, 'Bogota')
     assert e.weight(edge) == 0
 
 

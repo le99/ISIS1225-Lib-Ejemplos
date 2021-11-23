@@ -25,11 +25,11 @@
  """
 
 import config
+from DISClib.ADT import list as lt
 from DISClib.ADT import graph as g
 from DISClib.ADT import queue
 from DISClib.ADT import stack
 from DISClib.ADT import map
-from DISClib.ADT import list as lt
 from DISClib.Utils import error as error
 assert config
 

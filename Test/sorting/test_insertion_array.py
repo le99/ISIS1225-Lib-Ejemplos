@@ -28,7 +28,7 @@ from DISClib.Algorithms.Sorting import insertionsort as sa
 
 @pytest.fixture
 def orderedlist():
-    fname = cf.data_path + 'list-small-ordered.csv'
+    fname = fname = cf.file_dir + '/Test/Data/' + 'list-small-ordered.csv'
     lst = lt.newList(datastructure='ARRAY_LIST',
                      key='book_id',
                      filename=fname,
@@ -38,7 +38,7 @@ def orderedlist():
 
 @pytest.fixture
 def invertedlist():
-    fname = cf.data_path + 'list-small-inverted.csv'
+    fname = cf.file_dir + '/Test/Data/'  + 'list-small-inverted.csv'
     lst = lt.newList(datastructure='ARRAY_LIST',
                      key='book_id',
                      filename=fname,
@@ -48,7 +48,7 @@ def invertedlist():
 
 @pytest.fixture
 def randomlist():
-    fname = cf.data_path + 'list-small-random.csv'
+    fname = cf.file_dir + '/Test/Data/' + 'list-small-random.csv'
     lst = lt.newList(datastructure='ARRAY_LIST',
                      key='book_id',
                      filename=fname,
