@@ -26,9 +26,9 @@
 
 import config
 from DISClib.DataStructures import adjlist as g
-from DISClib.DataStructures import listiterator as it
 from DISClib.ADT import map as map
 from DISClib.ADT import stack as stk
+from DISClib.ADT import list as lt
 from DISClib.Utils import error as error
 assert config
 
@@ -77,9 +77,7 @@ def dfsVertex(search, graph, vertex):
     """
     try:
         adjlst = g.adjacents(graph, vertex)
-        adjslstiter = it.newIterator(adjlst)
-        while (it.hasNext(adjslstiter)):
-            w = it.next(adjslstiter)
+        for w in lt.iterator(adjlst):
             visited = map.get(search['visited'], w)
             if visited is None:
                 map.put(search['visited'],
