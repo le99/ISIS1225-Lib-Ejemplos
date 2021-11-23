@@ -31,9 +31,9 @@ def map():
 def test_remove(map):
     assert ht.size(map) == 12
     assert ht.contains(map, '3') is True
-    # ht.remove(map, '3')
-    # assert ht.size(map) == 11
-    #assert ht.contains(map, '3') is False
+    ht.remove(map, '3')
+    assert ht.size(map) == 11
+    assert ht.contains(map, '3') is False
     entry = ht.get(map, '110')
     assert entry is None
     ht.put(map, '110', 'title 110')
@@ -42,23 +42,23 @@ def test_remove(map):
     ht.put(map, '113', 'title 113')
     ht.put(map, '114', 'title 114')
     ht.put(map, '115', 'title 115')
-    assert ht.size(map) == 18
+    assert ht.size(map) == 17
     ht.put(map, '110', 'title 110-new')
     ht.put(map, '111', 'title 111-new')
     ht.put(map, '112', 'title 112-new')
     ht.put(map, '113', 'title 113-new')
     ht.put(map, '114', 'title 114-new')
     ht.put(map, '115', 'title 115-new')
-    assert ht.size(map) == 18
-    # entry = ht.get(map, '110')
-    # assert me.getValue(entry) == 'title 110'
-    # entry = ht.remove(map, '110')
-    # entry = ht.remove(map, '111')
-    # entry = ht.remove(map, '112')
-    # entry = ht.remove(map, '113')
-    # entry = ht.remove(map, '114')
-    # entry = ht.remove(map, '115')
-    # assert ht.size(map) == 11
+    assert ht.size(map) == 17
+    entry = ht.get(map, '110')
+    assert me.getValue(entry) == 'title 110-new'
+    entry = ht.remove(map, '110')
+    entry = ht.remove(map, '111')
+    entry = ht.remove(map, '112')
+    entry = ht.remove(map, '113')
+    entry = ht.remove(map, '114')
+    entry = ht.remove(map, '115')
+    assert ht.size(map) == 11
 
 
 def cmpkeys(key, element):
