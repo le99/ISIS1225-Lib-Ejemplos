@@ -91,6 +91,7 @@ def graph3():
 
 
 def test_prim(graph):
+    print("Test1")
     search = prim.PrimMST(graph)
     weight = prim.weightMST(graph, search)
     print('\n')
@@ -105,6 +106,7 @@ def test_prim(graph):
 
 
 def test_prim2(graph2):
+    print("Test2")
     search = prim.PrimMST(graph2)
     weight = prim.weightMST(graph2, search)
     print('\n')
@@ -119,8 +121,54 @@ def test_prim2(graph2):
 
 
 def test_prim3(graph3):
+    print("Test3")
     search = prim.PrimMST(graph3)
     weight = prim.weightMST(graph3, search)
+    print('\n')
+    path = search['mst']
+    while not q.isEmpty(path):
+        edge = q.dequeue(path)
+        print(edge['vertexA'] + "-->" +
+              edge['vertexB'] +
+              " costo: " +
+              str(edge['weight']))
+    print(str(weight))
+
+
+def test_prim4(graph2):
+    print("Test4")
+    search = prim.PrimMST(graph2, 'Armenia')
+    weight = prim.weightMST(graph2, search)
+    print('\n')
+    path = search['mst']
+    while not q.isEmpty(path):
+        edge = q.dequeue(path)
+        print(edge['vertexA'] + "-->" +
+              edge['vertexB'] +
+              " costo: " +
+              str(edge['weight']))
+    print(str(weight))
+
+
+def test_prim5(graph3):
+    print("Test5")
+    search = prim.PrimMST(graph3, 'Bogota')
+    weight = prim.weightMST(graph3, search)
+    print('\n')
+    path = search['mst']
+    while not q.isEmpty(path):
+        edge = q.dequeue(path)
+        print(edge['vertexA'] + "-->" +
+              edge['vertexB'] +
+              " costo: " +
+              str(edge['weight']))
+    print(str(weight))
+
+
+def test_prim6(graph):
+    print("Test6")
+    search = prim.PrimMST(graph, 'Bogota')
+    weight = prim.weightMST(graph, search)
     print('\n')
     path = search['mst']
     while not q.isEmpty(path):
