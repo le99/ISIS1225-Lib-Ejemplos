@@ -40,11 +40,46 @@ def graph():
     return graph
 
 
+
+
+@pytest.fixture
+def graph1():
+    graph = g.newGraph(size=7, directed=True, comparefunction=compareVertices)
+
+    g.insertVertex(graph, '1')
+    g.insertVertex(graph, '2')
+    g.insertVertex(graph, '3')
+    g.insertVertex(graph, '4')
+    g.insertVertex(graph, '5')
+    g.insertVertex(graph, '6')
+    g.insertVertex(graph, '7')
+
+    g.addEdge(graph, '1', '7')
+    g.addEdge(graph, '1', '2')
+    g.addEdge(graph, '3', '1')
+    g.addEdge(graph, '6', '7')
+    g.addEdge(graph, '3', '4')
+    g.addEdge(graph, '4', '6')
+    g.addEdge(graph, '5', '2')
+    g.addEdge(graph, '5', '4')
+    g.addEdge(graph, '7', '3')
+
+    return graph
+
+
+
 def test_scc(graph):
     sc = scc.KosarajuSCC(graph)
     assert scc.connectedComponents(sc) == 3
     assert scc.stronglyConnected(sc, 'Pedro', 'Carol') is True
     assert scc.stronglyConnected(sc, 'Pedro', 'Luz') is False
+
+
+
+def test_scc2(graph1):
+    sc = scc.KosarajuSCC(graph1)
+    print(sc)
+    assert scc.connectedComponents(sc) == 3
 
 
 # --------------------------------------
