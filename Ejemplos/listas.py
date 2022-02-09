@@ -60,7 +60,7 @@ sublista = lt.subList(a, 2, 3)    # => ["d", "c", "b"]
 
 lt.isPresent(a, "z")              # => 0, no esta 
 lt.isPresent(a, "a")              # => 1, esta en la posicion 1 
-lt.isPresent(a, "d")              # => 1, esta en la posicion 2
+lt.isPresent(a, "d")              # => 2, esta en la posicion 2
 
 
 
