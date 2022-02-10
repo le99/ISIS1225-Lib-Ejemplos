@@ -6,31 +6,31 @@ a = lt.newList('SINGLE_LINKED')   #Creacion de una lista vacia con listas sencil
 a = lt.newList('ARRAY_LIST')      #Creacion de una lista vacia con arreglos
 
 #Agregar Elementos
-lt.addFirst(a, 'a')               # ["a"]
-lt.addFirst(a, 'b')               # ["b", "a"]
-lt.addLast(a, 'c')                # ["b", "a", "c"]
-lt.insertElement(a, "z", 2)       # ["b", "z", "a", "c"]
-lt.insertElement(a, "x", 3)       # ["b", "z", "x", "a", "c"]
+lt.addFirst(a, 'a')               # a = ["a"]
+lt.addFirst(a, 'b')               # a = ["b", "a"]
+lt.addLast(a, 'c')                # a = ["b", "a", "c"]
+lt.insertElement(a, "z", 2)       # a = ["b", "z", "a", "c"]
+lt.insertElement(a, "x", 3)       # a = ["b", "z", "x", "a", "c"]
 lt.size(a)                        # => 5
 
 #Consultar
-lt.firstElement(a)                # => "b"
-lt.lastElement(a)                 # => "c"
-lt.getElement(a, 3)               # => "x"
+elem  = lt.firstElement(a)        # elem = "b"
+elem  = lt.lastElement(a)         # elem = "c"
+elem  = lt.getElement(a, 3)       # elem = "x"
 lt.isEmpty(a)                     # => False                    
 
 #Cambiar un elemento
-lt.changeInfo(a, 1, "w")          #["w", "z", "x", "a", "c"]
+lt.changeInfo(a, 1, "w")          # a =["w", "z", "x", "a", "c"]
 
 #Eliminar un elemento
-lt.removeFirst(a)                 #["z", "x", "a", "c"]
-lt.removeLast(a)                  #["z", "x", "a"]
-lt.deleteElement(a, 2)            #["z", "a"]
+lt.removeFirst(a)                 # a = ["z", "x", "a", "c"]
+lt.removeLast(a)                  # a = ["z", "x", "a"]
+lt.deleteElement(a, 2)            # a = ["z", "a"]
 
 
 # Recorrer una lista
 for n in lt.iterator(a):
-  pass
+  print(n)
   
   
 #=================================
@@ -48,14 +48,14 @@ def compararElementos(e1, e2):
 a = lt.newList('ARRAY_LIST', 
     cmpfunction=compararElementos) #Creacion de una lista vacia, los elementos se pueden comparar con cmpfunction (para poder usar lt.isPresent)
 
-lt.addLast(a, 'a')                # ["a"]
-lt.addLast(a, 'b')                # ["a", "b"]
-lt.addLast(a, 'c')                # ["a", "b", "c"]
-lt.addLast(a, 'd')                # ["a", "b", "c", "d"]
+lt.addLast(a, 'a')                # a = ["a"]
+lt.addLast(a, 'b')                # a = ["a", "b"]
+lt.addLast(a, 'c')                # a = ["a", "b", "c"]
+lt.addLast(a, 'd')                # a = ["a", "b", "c", "d"]
 
 #Intercambiar dos elementos
-lt.exchange(a, 2, 4)              # ["a", "d", "c", "b"]
-sublista = lt.subList(a, 2, 3)    # => ["d", "c", "b"]
+lt.exchange(a, 2, 4)              # a = ["a", "d", "c", "b"]
+sublista = lt.subList(a, 2, 3)    # sublista = ["d", "c", "b"]
 
 
 lt.isPresent(a, "z")              # => 0, no esta 
