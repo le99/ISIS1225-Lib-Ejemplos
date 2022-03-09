@@ -46,7 +46,9 @@ def compareKeys(k1, entry):
 
 mapa = mp.newMap(
   numelements=800,                #Numero de elementos que se planean guardar, no hay problema si luego son más
-  maptype='CHAINING', #Tipo de Estructura de datos
-  loadfactor=2,       #Factor de carga maximo
-  comparefunction=compareKeys)
-#El tamaño del arreglo "mapa" es numelements/loadfactor = 400 
+  prime=109345121,		            #Un primo, para el hash con MAD
+  maptype='CHAINING',             #Tipo de Estructura de datos
+  loadfactor=2,                   #Factor de carga maximo. Distinto al factor de carga
+  comparefunction=compareKeys     #Funcion para comparar las llaves
+  )
+#El tamaño del arreglo en "mapa" es numelements/loadfactor = 400 
