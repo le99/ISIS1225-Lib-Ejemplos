@@ -28,8 +28,11 @@ for n in lt.iterator(gr.edges(g)):
   
 gr.containsVertex(g, "z")   # => True
 gr.numVertices(g)       # => 2
-gr.degree(g, "a")       # => 1
-s = gr.numEdges(g)       # => 1
+gr.outdegree(g, "a")    # => 1
+gr.indegree(g, "a")     # => 0
+
+print("=>>", s)
+gr.numEdges(g)       # => 1
 
 
 #Camino de "a" a "b"
